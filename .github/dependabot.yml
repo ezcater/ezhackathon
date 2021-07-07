@@ -1,0 +1,27 @@
+version: 2
+registries:
+  artifactory-docker:
+    type: docker-registry
+    url: https://ezcater-production.jfrog.io
+    username: "${{secrets.ARTIFACTORY_USERNAME}}"
+    password: "${{secrets.ARTIFACTORY_PASSWORD}}"
+  artifactory-rubygems:
+    type: rubygems-server
+    url: https://ezcater.jfrog.io/ezcater/api/gems/ezcater-gem-source
+    username: "${{secrets.ARTIFACTORY_USERNAME}}"
+    password: "${{secrets.ARTIFACTORY_PASSWORD}}"
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  registries:
+    - artifactory-rubygems
+  schedule:
+    interval: "weekly"
+  open-pull-requests-limit: 10
+- package-ecosystem: docker
+  directory: "/"
+  registries:
+  - artifactory-docker
+  schedule:
+    interval: "weekly"
+  open-pull-requests-limit: 10

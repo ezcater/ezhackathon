@@ -1,0 +1,16 @@
+---
+manifest_version: '1'
+generated_at: '2021-07-07 11:09:53'
+name: ezhackathon
+port: '28076'
+components:
+- name: web
+- name: db
+  environment:
+  - POSTGRES_HOST
+  - POSTGRES_USER
+  configuration:
+    postgres_image: postgres:13.2-alpine
+    postgres_version: '13.2'
+configuration: {}
+environment: []

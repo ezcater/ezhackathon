@@ -1,0 +1,7 @@
+<h1>Hackathons</h1>
+
+<ul>
+  <% @hackathons.each do |hackathon| %>
+    <li><%= link_to hackathon.title, hackathon.url %></li>
+  <% end %>
+</ul>
