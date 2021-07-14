@@ -1,4 +1,5 @@
 Ezhackathon::Application.routes.draw do
+  root to: "layouts#index"
   resources :hackathons, only: [:index]
   namespace :api, defaults: { format: "json" } do
     resource :health_check, only: :show
