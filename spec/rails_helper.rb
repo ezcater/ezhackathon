@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-<<<<<<< Updated upstream
 
 ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
