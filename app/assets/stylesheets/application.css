@@ -27,12 +27,21 @@ body {
      border-color: rgb(81, 190, 81);
  }
 
- li {
-    list-style-type: none;
+ input {
+    width: 70%;
+    font-size: 100%;
+    font-family: monospace;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-inline: 15%;
+    cursor: pointer;
     border-style: solid;
     border-color: rgb(81, 190, 81);
+    background-color: white;
     border-radius: 8px;
     padding: 2%
+ }
+
+ input:hover {
+     background-color: lightgreen;
  }

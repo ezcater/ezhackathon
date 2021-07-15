@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ideas = Idea.create([
+    {name: "Cool app", tagline: "This is a cool app you want to work on!", description: "a cool description"}, 
+    {name: "Silly app", tagline: "You will have fun working on this app", description: "a silly description"}
+])

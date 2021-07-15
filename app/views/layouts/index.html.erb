@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>The name of your site</title>
+    <title>EzHackathons</title>
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %> 
     <%= csrf_meta_tags %>
@@ -9,8 +9,8 @@
     <h1> EzHackathons </h1>
     <h4> Supporting and displaying the ideas and projects for EzCater’s past, present, and upcoming hackathons! </h3>
 
-    <li><%= link_to "Ideas", "/ideas" %></li>
-    <li><%= link_to "Projects", "/projects" %></li>
-    <li><%= link_to "Hackathons", "/hackathons" %></li>
+    <%= button_to "Ideas", ideas_path, :method => "get" %>
+    <%= button_to "Projects", projects_path, :method => "get" %>
+    <%= button_to "Hackathons", hackathons_path, :method => "get" %>
   </body>
 </html>
