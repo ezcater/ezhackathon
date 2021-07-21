@@ -1,12 +1,12 @@
 Ezhackathon::Application.routes.draw do
+  root to: "layouts#index"
   namespace :api, defaults: { format: "json" } do
     resource :health_check, only: :show
   end
 
-  root to: "layouts#index"
-  get "/projects", to: "projects#index"
-  get "/ideas", to: "ideas#index"
-  get "/ideas/:name", to: "ideas#show"
+  resources :ideas, except: [:destroy]
 
+  
+  get "/projects", to: "projects#index"
   get "/hackathons", to: "hackathons#index"
   end
