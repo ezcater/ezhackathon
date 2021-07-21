@@ -30,7 +30,19 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE TABLE public.ideas (
-    id bigint NOT NULL
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    tagline character varying NOT NULL,
+    description character varying NOT NULL,
+    resources character varying NOT NULL,
+    snowflake_access boolean NOT NULL,
+    value_delivered character varying NOT NULL,
+    goal character varying NOT NULL,
+    hours_estimate integer NOT NULL,
+    additional_comments character varying,
+    links character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 

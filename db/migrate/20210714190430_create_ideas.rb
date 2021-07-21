@@ -4,6 +4,13 @@ class CreateIdeas < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :tagline, null: false, length: 500
       t.string :description, null: false
+      t.string :resources, null: false
+      t.boolean :snowflake_access, null: false
+      t.string :value_delivered, null: false
+      t.string :goal, null: false
+      t.integer :hours_estimate, null: false
+      t.string :additional_comments
+      t.string :links
 
       t.timestamps
     end

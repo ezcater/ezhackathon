@@ -14,7 +14,7 @@ class IdeasController < ApplicationController
             flash[:success] = 'Idea successfully added!'
             redirect_to idea_path(@idea)
         else
-            flash.now[:errors] = @idea.errors.full_messages.join("<br/>").html_safe 
+            flash.now[:errors] = @idea.errors.full_messages.join("<br/>") 
             render :new
         end
     end
@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
             flash[:success] = 'Idea successfully updated!'
             redirect_to idea_path(@idea)
         else
-            flash.now[:errors] = @idea.errors.full_messages.join("<br/>").html_safe 
+            flash.now[:errors] = @idea.errors.full_messages.join("<br/>")
             render :edit
         end
     end
