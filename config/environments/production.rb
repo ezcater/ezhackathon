@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -6,47 +8,47 @@ Rails.application.configure do
     config.x.datadog_trace.host = "datadog-trace.kube-system"
   end
 
-    # Use lograge gem for logging in JSON
-    config.lograge.enabled = true
-    config.lograge.formatter = Lograge::Formatters::Raw.new
+  # Use lograge gem for logging in JSON
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Raw.new
 
-    # Add the request parameters to the log, as well as the time
-    config.lograge.custom_options = lambda do |event|
-      exceptions = %w(controller action format id)
-      {
-        # event.time isn't always a Time, it starts a Float.
-        time: event.time.respond_to?(:strftime) ? event.time.strftime("%Y-%m-%d %H:%M:%S.%9N %z") : event.time,
-        params: event.payload[:params].except(*exceptions)
-      }
-    end
-    config.lograge.custom_payload do |controller|
-      request = controller.request
-      {
-        ip: request.remote_ip,
-        request_id: request.request_id,
-        service: request.ezcater_service_name
-      }.compact
-    end
+  # Add the request parameters to the log, as well as the time
+  config.lograge.custom_options = lambda do |event|
+    exceptions = %w(controller action format id)
+    {
+      # event.time isn't always a Time, it starts a Float.
+      time: event.time.respond_to?(:strftime) ? event.time.strftime("%Y-%m-%d %H:%M:%S.%9N %z") : event.time,
+      params: event.payload[:params].except(*exceptions),
+    }
+  end
+  config.lograge.custom_payload do |controller|
+    request = controller.request
+    {
+      ip: request.remote_ip,
+      request_id: request.request_id,
+      service: request.ezcater_service_name,
+    }.compact
+  end
 
-    # Ensure logs are in JSON format
-    config.log_formatter = lambda do |severity, timestamp, progname, msg|
-      data = {
-        severity: severity,
-        time: timestamp.strftime("%Y-%m-%d %H:%M:%S.%9N %z"),
-        progname: progname
-      }.compact
-      case msg
-      when Hash
-        data.reverse_merge!(msg)
-      else
-        data[:msg] = msg
-      end
-      JSON.dump(data) + "\n"
+  # Ensure logs are in JSON format
+  config.log_formatter = lambda do |severity, timestamp, progname, msg|
+    data = {
+      severity: severity,
+      time: timestamp.strftime("%Y-%m-%d %H:%M:%S.%9N %z"),
+      progname: progname,
+    }.compact
+    case msg
+    when Hash
+      data.reverse_merge!(msg)
+    else
+      data[:msg] = msg
     end
+    JSON.dump(data) + "\n"
+  end
 
-    log_path = config.x.dockerized ? "/proc/1/fd/1" : Rails.root.join("log", "#{Rails.env}.log")
-    config.logger = ActiveSupport::Logger.new(log_path)
-    config.logger.formatter = config.log_formatter
+  log_path = config.x.dockerized ? "/proc/1/fd/1" : Rails.root.join("log", "#{Rails.env}.log")
+  config.logger = ActiveSupport::Logger.new(log_path)
+  config.logger.formatter = config.log_formatter
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -76,7 +78,7 @@ Rails.application.configure do
   config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://static.cdn-ezcater.com'
+  config.action_controller.asset_host = "https://static.cdn-ezcater.com"
   config.assets.prefix = "/ezhackathon"
 
   # Specifies the header that your server uses for sending files.
@@ -104,7 +106,7 @@ Rails.application.configure do
   config.log_level = ENV.fetch("LOG_LEVEL", :info).to_sym
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store

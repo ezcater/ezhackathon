@@ -1,0 +1,35 @@
+<%= form_for(@event) do |f| %>
+    <div class="field">
+        <%= f.label :time %><br />
+        <%= f.date_select :time %>
+    </div>
+
+    <div class="field">
+        <%= f.label :place %><br />
+        <%= f.text_field :place %>
+    </div>
+
+    <div class="field">
+        <%= f.label :agenda %><br />
+        <%= f.text_area :agenda %>
+    </div>
+
+    <div class="field">
+        <%= f.label :participants %><br />
+        <%= f.text_area :participants %>
+    </div>
+
+    <div class="field">
+        <%= f.label :demo_links %><br />
+        <%= f.text_area :demo_links %>
+    </div>
+
+    <div class="field">
+        <%= f.label :silly_answers %><br />
+        <%= f.text_area :silly_answers %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit class: "button" %>
+  </div>
+<% end %>

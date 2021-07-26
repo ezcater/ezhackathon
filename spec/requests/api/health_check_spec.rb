@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "Health Check" do
   describe "GET /api/health_check" do
     it "returns success" do

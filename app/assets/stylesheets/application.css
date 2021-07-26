@@ -27,14 +27,25 @@ body {
      border-color: rgb(81, 190, 81);
  }
 
- input {
+ .button {
     width: 70%;
     font-size: 100%;
     font-family: monospace;
     text-align: center;
     margin-top: 5%;
     margin-inline: 15%;
-    cursor: pointer;
+    border-style: solid;
+    border-color: rgb(81, 190, 81);
+    background-color: white;
+    border-radius: 8px;
+    padding: 2%
+ } 
+
+ input, textarea {
+    width: 100%;
+    font-size: 100%;
+    font-family: monospace;
+    margin-top: 5%;
     border-style: solid;
     border-color: rgb(81, 190, 81);
     background-color: white;
@@ -42,8 +53,22 @@ body {
     padding: 2%
  }
 
- input:hover {
+ select {
+    width: 25%;
+    font-size: 100%;
+    font-family: monospace;
+    margin-top: 5%;
+    border-style: solid;
+    border-color: rgb(81, 190, 81);
+    background-color: white;
+    border-radius: 8px;
+    padding: 2%
+ }
+
+
+ .button:hover {
      background-color: lightgreen;
+     cursor: pointer;
  }
 
  div.field {

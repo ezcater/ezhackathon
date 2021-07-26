@@ -1,10 +1,10 @@
 <h1>Ideas</h1>
 
-<%= button_to "Submit a new idea", new_idea_path, :method => "get" %>
+<%= button_to "Submit a new idea", new_idea_path, :method => "get", class:"button" %>
 
 <ul>
   <% @ideas.each do |idea| %>
-    <li><%= link_to idea.name, idea %></li>
+    <ul><%= link_to idea.name, idea %></ul>
     <p> <%= idea.tagline %> </p>
   <% end %>
 </ul>

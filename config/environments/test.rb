@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
-    # Rotates logs after 20mb.  1 rotated file will be kept.
-    config.logger = ActiveSupport::Logger.new("log/test.log", 1, 1024 * 1024 * 20) unless ENV["CI"] == "true"
+  # Rotates logs after 20mb.  1 rotated file will be kept.
+  config.logger = ActiveSupport::Logger.new("log/test.log", 1, 1024 * 1024 * 20) unless ENV["CI"] == "true"
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -20,7 +22,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Show full error reports and disable caching.

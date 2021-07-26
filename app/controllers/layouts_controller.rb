@@ -1,4 +1,5 @@
-class LayoutsController < ActionController::Base
-    def index
-    end
+# frozen_string_literal: true
+
+class LayoutsController < ApplicationController
+  def index; end
 end

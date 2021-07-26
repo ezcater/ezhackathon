@@ -20,9 +20,8 @@
     </div>
 
     <div class="field">
-        Will you need access to Snowflake (data)?<br />
-        <%= check_box_tag(:snowflake_access) %>
-        <%= label_tag(:snowflake_access, "Yes, I need Snowflake access!") %>
+        <%= f.label "This idea will need access to Snowflake (data):" %> <br />
+        <%= f.check_box :snowflake_access %> <br />
     </div>
 
     <div class="field">
@@ -41,6 +40,6 @@
     </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "button" %>
   </div>
 <% end %>

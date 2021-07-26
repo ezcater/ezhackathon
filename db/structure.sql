@@ -26,6 +26,40 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.events (
+    id bigint NOT NULL,
+    "time" timestamp without time zone NOT NULL,
+    place character varying NOT NULL,
+    agenda text NOT NULL,
+    participants character varying NOT NULL,
+    demo_links text NOT NULL,
+    silly_answers text
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
+
+
+--
 -- Name: ideas; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -33,9 +67,9 @@ CREATE TABLE public.ideas (
     id bigint NOT NULL,
     name character varying NOT NULL,
     tagline character varying NOT NULL,
-    description character varying NOT NULL,
+    description text NOT NULL,
     resources character varying NOT NULL,
-    snowflake_access boolean NOT NULL,
+    snowflake_access boolean,
     value_delivered character varying NOT NULL,
     goal character varying NOT NULL,
     hours_estimate integer NOT NULL,
@@ -75,6 +109,13 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.events_id_seq'::regclass);
+
+
+--
 -- Name: ideas id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -87,6 +128,14 @@ ALTER TABLE ONLY public.ideas ALTER COLUMN id SET DEFAULT nextval('public.ideas_
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
@@ -112,6 +161,7 @@ ALTER TABLE ONLY public.schema_migrations
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20210714190430');
+('20210714190430'),
+('20210723125346');
 
 

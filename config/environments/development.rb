@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-# https://blog.saeloun.com/2019/10/31/rails-6-adds-guard-against-dns-rebinding-attacks.html
-config.hosts = nil
+  # https://blog.saeloun.com/2019/10/31/rails-6-adds-guard-against-dns-rebinding-attacks.html
+  config.hosts = nil
 
-if config.x.dockerized
-  host_ip = `hostname -i`
-  host_network = host_ip.sub(/\d+(\n)?$/, "0/16")
-  config.web_console.permissions = host_network
-end
+  if config.x.dockerized
+    host_ip = `hostname -i`
+    host_network = host_ip.sub(/\d+(\n)?$/, "0/16")
+    config.web_console.permissions = host_network
+  end
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -23,13 +25,13 @@ end
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false

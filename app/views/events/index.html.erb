@@ -1,0 +1,9 @@
+<h1>Events</h1>
+
+<%= button_to "Submit a new event", new_event_path, :method => "get", class: "button" %>
+
+<ul>
+  <% @events.each do |event| %>
+    <ul><%= link_to event.time.strftime("%A %B %d, %Y"), event %></ul>
+  <% end %>
+</ul>

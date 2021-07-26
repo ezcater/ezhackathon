@@ -1,4 +1,6 @@
-RSpec.describe "Factories" do # rubocop:disable RSpec/DescribeClass
+# frozen_string_literal: true
+
+RSpec.describe "Factories" do
   specify "returns valid models" do
     FactoryBot.lint
   end
