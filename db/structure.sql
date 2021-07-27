@@ -36,7 +36,9 @@ CREATE TABLE public.events (
     agenda text NOT NULL,
     participants character varying NOT NULL,
     demo_links text NOT NULL,
-    silly_answers text
+    silly_answers text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
