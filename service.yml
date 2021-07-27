@@ -3,6 +3,7 @@
 
 name: ezhackathon
 skip_production_deploy: true
+class: prototype
 pipeline:
   sandbox_cd_branch: main
 experimental:
