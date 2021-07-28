@@ -29,10 +29,10 @@ deployables:
     command: bundle exec rails server -p 3000 -b 0.0.0.0
     health_check_path: /api/health_check
     staging:
-      host: ezhackathon.staging-ezcater.com
+      host: ezhackathon.staging-ezcater.net
       replicas: 2
     production:
-      host: ezhackathon.ezcater.com
+      host: ezhackathon.ezcater.net
       replicas: 3
 predeploy:
 - dbmigrate
