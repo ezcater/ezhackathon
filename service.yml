@@ -2,8 +2,7 @@
 # https://skyline-docs.ezcater.net/configuration/service_yml
 
 name: ezhackathon
-skip_production_deploy: true
-class: prototype
+skip_production_deploy: false
 pipeline:
   sandbox_cd_branch: main
 experimental:
