@@ -67,6 +67,7 @@ ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
 
 CREATE TABLE public.ideas (
     id bigint NOT NULL,
+    "user" character varying NOT NULL,
     name character varying NOT NULL,
     tagline character varying NOT NULL,
     description text NOT NULL,
@@ -78,7 +79,8 @@ CREATE TABLE public.ideas (
     additional_comments character varying,
     links character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    submitter character varying
 );
 
 
@@ -102,6 +104,47 @@ ALTER SEQUENCE public.ideas_id_seq OWNED BY public.ideas.id;
 
 
 --
+-- Name: projects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.projects (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    tagline character varying NOT NULL,
+    description text NOT NULL,
+    resources character varying NOT NULL,
+    snowflake_access boolean,
+    value_delivered character varying NOT NULL,
+    goal character varying NOT NULL,
+    hours_estimate integer NOT NULL,
+    additional_comments character varying,
+    links character varying,
+    event_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -122,6 +165,13 @@ ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.event
 --
 
 ALTER TABLE ONLY public.ideas ALTER COLUMN id SET DEFAULT nextval('public.ideas_id_seq'::regclass);
+
+
+--
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
 
 
 --
@@ -149,11 +199,26 @@ ALTER TABLE ONLY public.ideas
 
 
 --
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: index_projects_on_event_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_on_event_id ON public.projects USING btree (event_id);
 
 
 --
@@ -164,6 +229,8 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20210714190430'),
-('20210723125346');
+('20210723125346'),
+('20210728134327'),
+('20210729114746');
 
 

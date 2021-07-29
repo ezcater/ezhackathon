@@ -16,7 +16,7 @@ class IdeasController < ApplicationController
       flash[:success] = "Idea successfully added!"
       redirect_to idea_path(@idea)
     else
-      flash.now[:errors] = @idea.errors.full_messages.join(", ")
+      flash.now[:errors] = @idea.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -32,7 +32,7 @@ class IdeasController < ApplicationController
       flash[:success] = "Idea successfully updated!"
       redirect_to idea_path(@idea)
     else
-      flash.now[:errors] = @idea.errors.full_messages.join(", ")
+      flash.now[:errors] = @idea.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -45,7 +45,7 @@ class IdeasController < ApplicationController
   private
 
   def idea_params
-    params.require(:idea).permit(:name, :tagline, :description, :resources, :snowflake_access, :value_delivered,
-                                 :goal, :hours_estimate)
+    params.require(:idea).permit(:submitter, :name, :tagline, :description, :resources, :snowflake_access,
+                                 :value_delivered, :goal, :hours_estimate)
   end
 end
