@@ -1,6 +1,11 @@
 <%= form_for(@idea) do |f| %>
     <div class="field">
-        <%= f.label :name %><br />
+        What is your name?<br />
+        <%= f.text_field :submitter %>
+    </div>
+
+    <div class="field">
+        What is the name of your idea?<br />
         <%= f.text_field :name %>
     </div>
 

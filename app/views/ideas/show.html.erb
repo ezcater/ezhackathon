@@ -2,6 +2,7 @@
 <p><%= link_to "Back to Ideas", ideas_path %></p>
 <h1> <%=@idea.name%> </h1>
 <h3> <%=@idea.tagline%> </h3>
+Submitted by: <%= @idea.submitter %>
 
 <h4>Description:</h4>
 <%= @idea.description%>
