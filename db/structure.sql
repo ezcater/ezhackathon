@@ -67,7 +67,6 @@ ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
 
 CREATE TABLE public.ideas (
     id bigint NOT NULL,
-    "user" character varying NOT NULL,
     name character varying NOT NULL,
     tagline character varying NOT NULL,
     description text NOT NULL,
@@ -230,7 +229,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20210714190430'),
 ('20210723125346'),
-('20210728134327'),
-('20210729114746');
+('20210729114746'),
+('20210729134509');
 
 

@@ -46,6 +46,6 @@ class IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:submitter, :name, :tagline, :description, :resources, :snowflake_access,
-                                 :value_delivered, :goal, :hours_estimate)
+                                 :value_delivered, :goal, :hours_estimate, :additional_comments, :links)
   end
 end

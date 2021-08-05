@@ -7,7 +7,7 @@ Ezhackathon::Application.routes.draw do
   end
 
   resources :ideas, except: [:destroy]
-  resources :events, except: [:destroy]
-
-  get "/projects", to: "projects#index"
+  resources :events, except: [:destroy] do
+    resources :projects, except: [:destroy]
+  end
 end

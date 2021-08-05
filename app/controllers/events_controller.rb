@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @time = format_time(@event)
+    @projects = @event.projects
     render :show
   end
 

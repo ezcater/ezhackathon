@@ -15,5 +15,17 @@
 <h4>What's a fun fact that you know?</h4>
 <%= @event.silly_answers%>
 
-  <%= button_to "Edit", edit_event_path, :method => "get", class:"button" %>
+<div class="projects">
+  <h3>Projects:</h3>
+
+  <% @projects.each do |project|%>
+      <a class="project" href=<%=project.links%>><%="#{project.name}: #{project.tagline}"%></a>
+      <%=project.description%><br>
+    <%= button_to "Edit Project", edit_event_project_path(@event), :method => "get" %>
+  <% end %>
+
+  <%=button_to "Add a New Project", new_event_project_path(@event), :method => "get", class:"button" %>
+</div>
+
+  <%= button_to "Edit Event", edit_event_path, :method => "get", class:"button" %>
 
