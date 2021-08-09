@@ -4,7 +4,7 @@
 <h3> <%=@event.place%> </h3>
 
 <h4>Agenda:</h4>
-<%= @event.agenda%>
+<pre><%= @event.agenda%></pre>
 
 <h4>Participants:</h4>
 <%= @event.participants%>
@@ -19,9 +19,13 @@
   <h3>Projects:</h3>
 
   <% @projects.each do |project|%>
-      <a class="project" href=<%=project.links%>><%="#{project.name}: #{project.tagline}"%></a>
-      <%=project.description%><br>
-    <%= button_to "Edit Project", edit_event_project_path(@event), :method => "get" %>
+    <div class="project">
+      <a href=<%=project.links%>><%="#{project.name}: #{project.tagline}"%></a>
+      <div class="tagline">
+        <%=project.description%>
+      </div>
+      <%= link_to "Edit Project", edit_event_project_path(@event), :method => "get" %>
+    </div>
   <% end %>
 
   <%=button_to "Add a New Project", new_event_project_path(@event), :method => "get", class:"button" %>
