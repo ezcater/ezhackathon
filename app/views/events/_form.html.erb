@@ -1,34 +1,29 @@
 <%= form_for(@event) do |f| %>
     <div class="field">
-        <%= f.label :time %><br />
+        <%= f.label :time, class: "required-field" %><br />
         <%= f.date_select :time %>
     </div>
 
     <div class="field">
-        <%= f.label :place %><br />
+        <%= f.label :place, class: "required-field" %><br />
         <%= f.text_field :place %>
     </div>
 
     <div class="field">
-        <%= f.label :agenda %><br />
+        <%= f.label :agenda, class: "required-field" %><br />
         <%= f.text_area :agenda %>
     </div>
 
     <div class="field">
-        <%= f.label :participants %><br />
+        <%= f.label :participants, class: "required-field" %><br />
         <%= f.text_area :participants %>
     </div>
-
+    #confluence_link
     <div class="field">
-        <%= f.label :demo_links %><br />
+        <%= f.label :demo_links, class: "required-field" %><br />
         <%= f.text_area :demo_links %>
     </div>
-
-    <div class="field">
-        What's a fun fact that you know?<br />
-        <%= f.text_area :silly_answers %>
-    </div>
-
+    
   <div class="actions">
     <%= f.submit class: "button" %>
   </div>

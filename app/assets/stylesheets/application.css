@@ -27,6 +27,11 @@ body {
      border-color: rgb(81, 190, 81);
  }
 
+ .required-field::after {
+    content: "*";
+    color: red;
+}
+
  .button {
     width: 70%;
     font-size: 100%;
@@ -46,7 +51,15 @@ body {
     border-color: rgb(81, 190, 81);
     border-radius: 8px;
     margin-top: 5%;
-    padding: 5%
+    padding: 5%;
+ }
+
+ .project {
+    margin-bottom: 2em;
+ }
+
+ .tagline {
+     margin-bottom: 1em;
  }
 
  input, textarea {
@@ -58,7 +71,8 @@ body {
     border-color: rgb(81, 190, 81);
     background-color: white;
     border-radius: 8px;
-    padding: 2%
+    padding: 2%;
+    white-space: pre-wrap;
  }
 
  select {
