@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'capybara/rails'
+require 'capybara/rspec'
 require "simplecov"
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
