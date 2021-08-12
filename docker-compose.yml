@@ -31,9 +31,9 @@ x-service: &default-service
 services:
   ezhackathon-db:
     container_name: ezhackathon_ezhackathon-db_1
-    image: postgres:12.2-alpine
+    image: postgres:13.2-alpine
     volumes:
-    - $HOME/postgresql/12.2/data/map-sync:/var/lib/postgresql/data:delegated
+    - $HOME/postgresql/13.2/data/ezhackathon:/var/lib/postgresql/data:delegated
     environment:
       POSTGRES_PASSWORD: password
   ezhackathon-web:
