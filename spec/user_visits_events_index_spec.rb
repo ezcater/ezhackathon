@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 # feature "when visiting the events index page" do
 #   let!(:event_1) { FactoryBot.create(:event) }
 #   let!(:event_2) { FactoryBot.create(:event) }
-
 
 #   scenario "user sees a list of event start times and end times" do
 #     visit '/events'

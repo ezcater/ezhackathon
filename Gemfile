@@ -35,7 +35,7 @@ gem "turbolinks", "~> 5"
 gem "bootsnap", ">= 1.4.2", require: false
 
 group :development, :test do
-  gem 'capybara'
+  gem "capybara"
   gem "dotenv-rails"
   gem "ezcater_rubocop", ">= 0.52.7", require: false
   gem "factory_bot_rails"
