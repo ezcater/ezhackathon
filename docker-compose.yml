@@ -1,13 +1,13 @@
 version: "3.4"
 volumes:
-  bundle-volume: 
-  shared-volume: 
+  bundle-volume:
+  shared-volume:
 networks:
   default:
     external:
       name: ezcater-development-network
 x-environment: &default-environment
-  BUNDLE_EZCATER__JFROG__IO: 
+  BUNDLE_EZCATER__JFROG__IO:
   BOOTSNAP_CACHE_DIR: /usr/src/shared/bootsnap
   PRYRC: /usr/src/app/.docker-pryrc
   BUNDLE_IGNORE_CONFIG: 1
@@ -21,7 +21,7 @@ x-service: &default-service
     args:
     - BUNDLE_EZCATER__JFROG__IO
   volumes:
-  - /Users/jackieyoung/ezhackathon:/usr/src/app
+  - .:/usr/src/app
   - bundle-volume:/usr/local/bundle:delegated
   - shared-volume:/usr/src/shared:delegated
   tty: true
@@ -31,9 +31,9 @@ x-service: &default-service
 services:
   ezhackathon-db:
     container_name: ezhackathon_ezhackathon-db_1
-    image: postgres:13.2-alpine
+    image: postgres:12.2-alpine
     volumes:
-    - /Users/jackieyoung/postgresql/13.2/data/ezhackathon:/var/lib/postgresql/data:delegated
+    - $HOME/postgresql/12.2/data/map-sync:/var/lib/postgresql/data:delegated
     environment:
       POSTGRES_PASSWORD: password
   ezhackathon-web:
@@ -41,8 +41,8 @@ services:
     container_name: ezhackathon_ezhackathon-web_1
     environment:
       <<: *default-environment
-      IGNORE_KAFKA: 
-      IGNORE_SCHEMA_REGISTRY: 
+      IGNORE_KAFKA:
+      IGNORE_SCHEMA_REGISTRY:
     command: bin/start
     ports:
     - 127.0.0.1:28076:28076
