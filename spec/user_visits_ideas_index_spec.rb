@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 feature "when visiting the ideas index page" do
   let!(:idea_1) { FactoryBot.create(:idea) }
   let!(:idea_2) { FactoryBot.create(:idea) }
 
-
   scenario "user sees a list of idea names and taglines" do
-    visit '/ideas'
+    visit "/ideas"
 
     expect(page).to have_content(idea_1.name)
     expect(page).to have_content(idea_1.tagline)
@@ -15,7 +16,7 @@ feature "when visiting the ideas index page" do
   end
 
   scenario "user clicks an idea and sees details about the idea" do # rubocop:disable RSpec/MultipleExpectations
-    visit '/ideas'
+    visit "/ideas"
     click_link(idea_1.name)
 
     expect(page).to have_content(idea_1.name)
