@@ -1,4 +1,4 @@
-FROM ezcater-production.jfrog.io/ruby:2.7.3-pg13
+FROM ezcater-production.jfrog.io/ruby:2.7-pg13
 
 ARG SKIP_REQUIRED_ENV_VAR_ENFORCEMENT=true
 COPY Gemfile Gemfile.lock /usr/src/app/
