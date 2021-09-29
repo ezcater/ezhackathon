@@ -3,8 +3,8 @@
 require "rails_helper"
 
 feature "when visiting the ideas index page" do
-  let!(:idea_1) { FactoryBot.create(:idea) }
-  let!(:idea_2) { FactoryBot.create(:idea) }
+  let!(:idea_1) { create(:idea) }
+  let!(:idea_2) { create(:idea) }
 
   scenario "user sees a list of idea names and taglines" do
     visit "/ideas"

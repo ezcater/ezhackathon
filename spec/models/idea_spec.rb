@@ -13,8 +13,8 @@ RSpec.describe Idea do
 
   describe ".without_projects" do
     it "returns just the ideas that do not have projects" do
-      FactoryBot.create_list(:project, 2).map(&:idea)
-      ideas_without_projects = FactoryBot.create_list(:idea, 2)
+      create_list(:project, 2).map(&:idea)
+      ideas_without_projects = create_list(:idea, 2)
 
       expect(described_class.without_projects).to match_array(ideas_without_projects)
     end
