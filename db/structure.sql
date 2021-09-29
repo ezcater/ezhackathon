@@ -11,6 +11,8 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
+SET default_table_access_method = heap;
+
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
@@ -137,14 +139,6 @@ ALTER SEQUENCE public.ideas_id_seq OWNED BY public.ideas.id;
 
 CREATE TABLE public.projects (
     id bigint NOT NULL,
-    name character varying NOT NULL,
-    tagline character varying NOT NULL,
-    description text NOT NULL,
-    resources character varying NOT NULL,
-    snowflake_access boolean,
-    value_delivered character varying NOT NULL,
-    goal character varying NOT NULL,
-    hours_estimate integer NOT NULL,
     additional_comments character varying,
     links character varying,
     event_id bigint NOT NULL,
@@ -294,6 +288,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210929143110'),
 ('20210929143905'),
 ('20210929144014'),
-('20210929145743');
+('20210929145743'),
+('20210929151726');
 
 
