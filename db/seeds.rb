@@ -11,14 +11,14 @@
 Award.find_or_create_by!(title: "Culture cupcake")
 Award.find_or_create_by!(title: "Most likely to make it into production")
 
-Event.find_or_create_by!(participants: "Anyone!") do |event|
+next_event = Event.find_or_create_by!(participants: "Anyone!") do |event|
   event.agenda = "Hack on some fun, new projects."
   event.demo_links = "None yet."
   event.place = "Anywhere"
   event.time = 1.year.from_now
 end
 
-["Cool app", "Silly app", "Accepted app"].each do |name|
+ideas = ["Cool app", "Silly app", "Accepted app"].map do |name|
   Idea.find_or_create_by!(name: name) do |idea|
     idea.description = "A #{name.downcase} description."
     idea.goal = "To get people together and create a #{name.downcase}."
@@ -29,3 +29,5 @@ end
     idea.value_delivered = "Everyone loves a #{name.downcase}."
   end
 end
+
+Project.find_or_create_by!(event: next_event, idea: ideas.last)
