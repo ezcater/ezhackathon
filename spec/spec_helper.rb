@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require "capybara/rails"
 require "capybara/rspec"
 require "simplecov"
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -15,5 +15,4 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.order = :random
-  config.include FactoryBot::Syntax::Methods
 end
