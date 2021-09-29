@@ -3,6 +3,8 @@
 
 name: ezhackathon
 skip_production_deploy: false
+slack:
+  default: pb-a-ezhackathon
 pipeline:
   sandbox_cd_branch: main
 experimental:
