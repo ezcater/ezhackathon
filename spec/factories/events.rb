@@ -6,6 +6,6 @@ FactoryBot.define do
     place { "Virtual" }
     agenda { "10am hacking" }
     participants { "Rachael" }
-    demo_links { "" }
+    demo_links { "Coming soon." }
   end
 end
