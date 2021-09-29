@@ -96,3 +96,26 @@ body {
  div.field {
     margin-top: 5%;
  }
+
+ .flash_messages div {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid;
+ }
+
+ .flash_messages .errors {
+    border-color: #dc3545;
+    color: #dc3545;
+ }
+
+ .flash_messages .success {
+    border-color: #28a745;
+    color: #28a745;
+ }
+
+ .flash_messages .info {
+    border-color: #17a2b8;
+    color: #17a2b8;
+ }

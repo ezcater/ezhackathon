@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Project added successfully"
       redirect_to @event
     else
-      flash.now[:error] = @project.errors.full_messages.to_sentence
+      flash.now[:errors] = @project.errors.full_messages
       render :new
     end
   end
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project successfully updated!"
       redirect_to @event
     else
-      flash.now[:errors] = @project.errors.full_messages.to_sentence
+      flash.now[:errors] = @project.errors.full_messages
       render :edit
     end
   end

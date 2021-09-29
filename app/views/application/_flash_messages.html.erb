@@ -1,0 +1,21 @@
+<div class="flash_messages">
+
+  <% if flash[:errors].present? %>
+    <div class="errors">
+      <h5>Please fix the following errors:</h5>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li class="error"><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if flash[:success].present? %>
+    <div class="success"><%= flash[:success] %></div>
+  <% end %>
+
+  <% if flash[:notice].present? %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+</div>
