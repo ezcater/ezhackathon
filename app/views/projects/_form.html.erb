@@ -13,7 +13,7 @@
 
     <div class="field">
         <%= f.label "Add any links to your final artifacts" %><br />
-        <%= f.text_field :links %>
+        <%= f.text_field :links, value: @project.links %>
     </div>
 
     <div class="field">

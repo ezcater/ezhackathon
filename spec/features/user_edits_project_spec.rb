@@ -5,13 +5,29 @@ require "rails_helper"
 feature "when user edits a project" do
   let!(:event) { create(:event, time: "2021-09-30") }
   let!(:idea) { create(:idea, name: "A great idea") }
-  let!(:project) { create(:project, event: event, idea: idea) }
 
-  scenario "user successfully creates new project" do
+  let!(:project) do
+    create(
+      :project,
+      event: event,
+      idea: idea,
+      links: "None yet!",
+      additional_comments: "N/A"
+    )
+  end
+
+  scenario "user views form for project with existing info" do
     visit edit_event_project_path(event, project)
 
     expect(page).to have_content idea.name
     expect(page).to have_content "Thursday September 30, 2021"
+    expect(page).to have_field("project[idea_id]", with: idea.id)
+    expect(page).to have_field("project[links]", with: "None yet!")
+    expect(page).to have_field("project[additional_comments]", with: "N/A")
+  end
+
+  scenario "user successfully edits new project" do
+    visit edit_event_project_path(event, project)
 
     fill_in "project[links]", with: "https://example.com/my-great-idea-writeup"
 
