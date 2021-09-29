@@ -177,6 +177,40 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: votes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.votes (
+    id bigint NOT NULL,
+    award_id bigint NOT NULL,
+    event_id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.votes_id_seq OWNED BY public.votes.id;
+
+
+--
 -- Name: awards id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -202,6 +236,13 @@ ALTER TABLE ONLY public.ideas ALTER COLUMN id SET DEFAULT nextval('public.ideas_
 --
 
 ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+--
+-- Name: votes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.votes ALTER COLUMN id SET DEFAULT nextval('public.votes_id_seq'::regclass);
 
 
 --
@@ -253,6 +294,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: votes votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: index_projects_on_event_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -264,6 +313,34 @@ CREATE INDEX index_projects_on_event_id ON public.projects USING btree (event_id
 --
 
 CREATE INDEX index_projects_on_idea_id ON public.projects USING btree (idea_id);
+
+
+--
+-- Name: index_votes_on_award_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_votes_on_award_id ON public.votes USING btree (award_id);
+
+
+--
+-- Name: index_votes_on_event_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_votes_on_event_id ON public.votes USING btree (event_id);
+
+
+--
+-- Name: index_votes_on_event_id_and_award_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_event_id_and_award_id_and_name ON public.votes USING btree (event_id, award_id, name);
+
+
+--
+-- Name: index_votes_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_votes_on_project_id ON public.votes USING btree (project_id);
 
 
 --
@@ -289,6 +366,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210929143905'),
 ('20210929144014'),
 ('20210929145743'),
-('20210929151726');
+('20210929151726'),
+('20210929184506');
 
 
