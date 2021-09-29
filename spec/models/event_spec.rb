@@ -8,4 +8,5 @@ RSpec.describe Event do
   it { is_expected.to validate_presence_of(:participants) }
 
   it { is_expected.to have_many(:projects) }
+  it { is_expected.to have_many(:votes).dependent(:destroy) }
 end
