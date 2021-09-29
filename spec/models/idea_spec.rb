@@ -10,4 +10,6 @@ RSpec.describe Idea do
   it { is_expected.to validate_presence_of(:value_delivered) }
   it { is_expected.to validate_presence_of(:goal) }
   it { is_expected.to validate_presence_of(:hours_estimate) }
+
+  it { is_expected.to have_one(:project) }
 end
