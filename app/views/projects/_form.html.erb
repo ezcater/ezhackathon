@@ -1,47 +1,23 @@
 <%= form_for [@event, @project] do |f| %>
     <div class="field">
-        What is the name of this project?<br />
-        <%= f.text_field :name %>
+        <%= f.label "Which idea is project based on?" %><br />
+        <%= f.collection_select(
+            :idea_id,
+            available_ideas_for(@project),
+            :id,
+            :name,
+            { prompt: "Please select the idea this project will work on", include_blank: true },
+            {
+                class: "full-width",
+                required: true,
+                disabled: @project.persisted?
+            }
+        ) %>
     </div>
 
     <div class="field">
-        <%= f.label :tagline %><br />
-        <%= f.text_field :tagline %>
-    </div>
-
-    <div class="field">
-        Describe your project:<br />
-        <%= f.text_field :description %>
-    </div>
-
-    <div class="field">
-        What resources do you need to be successful? (a skillset, person, access to a technology etc)<br />
-        <%= f.text_field :resources %>
-    </div>
-
-    <div class="field">
-        <%= f.label "This idea will need access to Snowflake (data):" %> <br />
-        <%= f.check_box :snowflake_access %> <br />
-    </div>
-
-    <div class="field">
-        What value will this project deliver?<br />
-        <%= f.text_field :value_delivered %>
-    </div>
-
-    <div class="field">
-        What is your goal for this project in the hackathon?<br />
-        <%= f.text_field :goal %>
-    </div>
-
-    <div class="field">
-        How many "people hours" do you estimate it will take to plan, scope and demo?<br />
-        <%= f.text_field :hours_estimate %>
-    </div>
-
-    <div class="field">
-        <%= f.label :links %><br />
-        <%= f.text_field :links %>
+        <%= f.label "Add any links to your final artifacts" %><br />
+        <%= f.text_field :links, value: @project.links %>
     </div>
 
     <div class="field">
@@ -49,9 +25,7 @@
         <%= f.text_field :additional_comments %>
     </div>
 
-
-
     <div class="actions">
-    <%= f.submit class: "button" %>
+        <%= f.submit class: "button" %>
     </div>
 <% end %>

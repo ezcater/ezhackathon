@@ -1,2 +1,2 @@
-<h2>Edit Project: <%= @project.name %> for the <%= @event.time.strftime("%B %d, %Y")%> EzHackathon</h2>
+<h2>Edit Project: <%= @project.idea.name %> for the <%= format_date(@event.time) %> EzHackathon</h2>
 <%= render :partial => '/projects/form' %>

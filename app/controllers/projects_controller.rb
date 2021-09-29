@@ -40,9 +40,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :tagline, :description, :resources, :snowflake_access,
-                                    :value_delivered, :goal, :hours_estimate, :additional_comments, :links)
-
-    # project name, team name, participants, confluence link, description
+    params.require(:project).permit(:idea_id, :additional_comments, :links)
   end
 end
