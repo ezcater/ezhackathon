@@ -120,7 +120,8 @@ CREATE TABLE public.projects (
     links character varying,
     event_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    idea_id bigint NOT NULL
 );
 
 
@@ -221,6 +222,21 @@ CREATE INDEX index_projects_on_event_id ON public.projects USING btree (event_id
 
 
 --
+-- Name: index_projects_on_idea_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_on_idea_id ON public.projects USING btree (idea_id);
+
+
+--
+-- Name: projects fk_rails_b361790cd9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT fk_rails_b361790cd9 FOREIGN KEY (idea_id) REFERENCES public.ideas(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -230,6 +246,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210714190430'),
 ('20210723125346'),
 ('20210729114746'),
-('20210729134509');
+('20210729134509'),
+('20210929143110'),
+('20210929143905'),
+('20210929144014');
 
 
