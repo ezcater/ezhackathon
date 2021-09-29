@@ -1,6 +1,6 @@
 <p><%= link_to "Back to Events", events_path %></p>
-<h1> <%=@time%> </h1>
-<h3> <%=@event.place%> </h3>
+<h1> <%= format_date(@event.time) %> </h1>
+<h3> <%= @event.place%> </h3>
 
 <h4>Agenda:</h4>
 <pre><%= @event.agenda%></pre>

@@ -39,13 +39,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @time = format_time(@event)
     @projects = @event.projects
     render :show
-  end
-
-  def format_time(event)
-    event.time.strftime("%A %B %d, %Y")
   end
 
   private
