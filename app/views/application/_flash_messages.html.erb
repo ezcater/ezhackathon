@@ -1,6 +1,6 @@
 <div class="flash_messages">
 
-  <% if flash[:errors]&.any? %>
+  <% if flash[:errors].present? %>
     <div class="errors">
       <h5>Please fix the following errors:</h5>
       <ul>
