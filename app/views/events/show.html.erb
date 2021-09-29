@@ -19,9 +19,9 @@
 
   <% @projects.each do |project|%>
     <div class="project">
-      <a href=<%=project.links%>><%="#{project.name}: #{project.tagline}"%></a>
+      <a href=<%=project.links%>><%="#{project.idea.name}: #{project.idea.tagline}"%></a>
       <div class="tagline">
-        <%=project.description%>
+        <%=project.idea.description%>
       </div>
       <%= link_to "Edit Project", edit_event_project_path(@event), :method => "get" %>
     </div>

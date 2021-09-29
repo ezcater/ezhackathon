@@ -44,7 +44,7 @@ body {
     background-color: white;
     border-radius: 8px;
     padding: 2%
- } 
+ }
 
  .projects {
     border-style: solid;
@@ -85,6 +85,10 @@ body {
     background-color: white;
     border-radius: 8px;
     padding: 2%
+ }
+
+ .full-width {
+    width: 100%
  }
 
 
