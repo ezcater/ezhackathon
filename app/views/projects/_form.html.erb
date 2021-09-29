@@ -7,7 +7,11 @@
             :id,
             :name,
             { prompt: "Please select the idea this project will work on", include_blank: true },
-            { class: "full-width", required: true }
+            {
+                class: "full-width",
+                required: true,
+                disabled: @project.persisted?
+            }
         ) %>
     </div>
 

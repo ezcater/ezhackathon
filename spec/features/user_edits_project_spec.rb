@@ -21,7 +21,7 @@ feature "when user edits a project" do
 
     expect(page).to have_content idea.name
     expect(page).to have_content "Thursday September 30, 2021"
-    expect(page).to have_field("project[idea_id]", with: idea.id)
+    expect(find_field("project[idea_id]", disabled: true).value).to eq idea.id.to_s
     expect(page).to have_field("project[links]", with: "None yet!")
     expect(page).to have_field("project[additional_comments]", with: "N/A")
   end
