@@ -23,11 +23,11 @@
       <div class="tagline">
         <%=project.idea.description%>
       </div>
-      <%= link_to "Edit Project", edit_event_project_path(@event), :method => "get" %>
+      <%= link_to "Edit Project", edit_event_project_path(@event, project), :method => "get" %>
     </div>
   <% end %>
 
-  <%=button_to "Add a New Project", new_event_project_path(@event), :method => "get", class:"button" %>
+  <%= button_to "Add a New Project", new_event_project_path(@event), :method => "get", class:"button" %>
 </div>
 
   <%= button_to "Edit Event", edit_event_path, :method => "get", class:"button" %>
