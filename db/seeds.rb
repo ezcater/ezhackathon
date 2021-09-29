@@ -7,8 +7,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ideas = [
-  { name: "Cool app", tagline: "This is a cool app you want to work on!", description: "a cool description" },
-  { name: "Silly app", tagline: "You will have fun working on this app", description: "a silly description" },
-]
-ideas.each { |idea| Idea.find_or_create_by!(idea) }
+
+["Cool app", "Silly app"].each do |name|
+  Idea.find_or_create_by!(name: name) do |idea|
+    idea.tagline = "#{name} you probably want to work on!"
+    idea.description = "A #{name.downcase} description."
+    idea.submitter = "Seed Database"
+    idea.resources = "Check out the wiki."
+    idea.hours_estimate = rand(32)
+    idea.value_delivered = "Everyone loves a #{name.downcase}."
+    idea.goal = "To get people together and create a #{name.downcase}."
+  end
+end
