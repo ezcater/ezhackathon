@@ -1,0 +1,40 @@
+<h1><%= format_month(@event.time)%> Voting</h1>
+
+<% if user_started_voting? %>
+  <%= render partial: "voting", locals: { event: @event, username: @username } %>
+<% else %>
+  <h2>Welcome, we hacked, now we vote!</h2>
+
+  <p>
+    You will be voting on the following awards:
+  </p>
+
+  <ul>
+    <% Award.all.each do |award| %>
+      <li>"<%= award.title %>"</li>
+    <% end %>
+  </ul>
+
+  <p>
+    across these projects:
+  </p>
+
+  <ul>
+    <% @event.projects.includes(:idea).order("ideas.name").each do |project| %>
+      <li><%= project.idea.name %></li>
+    <% end %>
+  </ul>
+
+  <hr/>
+
+  <% if @event.voting_enabled? %>
+    <p>To start voting, first enter a username.</p>
+    <%= form_with(url: new_event_vote_path(@event), method: :get, local: true) do |f| %>
+      <%= f.text_field :username, placeholder: "Username", required: true %>
+
+      <%= f.submit("Start voting!", name: nil) %>
+    <% end %>
+  <% else %>
+    <p>Voting is not enabled at this time</p>
+  <% end %>
+<% end %>
