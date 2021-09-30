@@ -33,7 +33,8 @@ class VotesController < ApplicationController
   def load_control_strategy
     @control_strategy = ::Voting::CookieControlledVotingStrategy.new(
       cookies: cookies,
-      current_award_id: params[:award_id]
+      current_award_id: params[:award_id],
+      event: @event
     )
   end
 

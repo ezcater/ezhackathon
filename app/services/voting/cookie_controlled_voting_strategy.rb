@@ -4,13 +4,15 @@ module Voting
   class CookieControlledVotingStrategy
     attr_reader :current_award_id
 
-    def initialize(cookies:, current_award_id:)
+    def initialize(cookies:, current_award_id:, event:)
       @cookies = cookies
       @current_award_id = current_award_id
+      @event = event
     end
 
     def start_voting(username)
       @cookies[:username] ||= username
+      @cookies[voting_key] = true
     end
 
     def username
@@ -18,11 +20,7 @@ module Voting
     end
 
     def user_started_voting?
-      username.present?
-    end
-
-    def unfinished?
-      user_started_voting? && !user_finished_voting?
+      username.present? && @cookies[voting_key]
     end
 
     def build_next_path(voting_state)
@@ -36,6 +34,12 @@ module Voting
         voting_state.event,
         **next_params
       )
+    end
+
+    private
+
+    def voting_key
+      "voting_on_event_#{@event.id}"
     end
   end
 end
