@@ -1,25 +1,7 @@
 <h1>Awards</h1>
 
-<ul>
-  <% @awards.each do |award, projects| %>
-    <li>
-      <h2><%= award.title %><h2/>
+<div id="<%= dom_id(@event) %>">
+  <%= render "awards", awards: @awards, event: @event %>
+</div>
 
-      <ol>
-        <% projects.each.with_index do |project, index| %>
-          <li>
-            <% if voting_complete? %>
-              <%= award_place(index) %>:
-            <% end %>
-
-            <%= project.idea.name %>
-
-            <% unless voting_complete? %>
-              (<%= pluralize project.vote_count, "vote" %>)
-            <% end %>
-          </li>
-        <% end %>
-      </ol>
-    </li>
-  <% end %>
-</ul>
+<%= turbo_stream_from @event %>

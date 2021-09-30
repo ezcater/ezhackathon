@@ -38,3 +38,11 @@
 
 # Ignore Ruby Mine config
 /.idea
+
+# Ignore Webpacker related files.
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

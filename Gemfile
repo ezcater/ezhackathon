@@ -11,6 +11,7 @@ gem "ezcater_http"
 gem "ezcater_metrics"
 gem "ezcater_migrations", ">= 0.9.0"
 gem "ezcater_trusted_proxies-rails"
+gem "hotwire-rails"
 gem "ice_nine", require: ["ice_nine", "ice_nine/core_ext/object"]
 gem "lograge"
 gem "private_attr", require: "private_attr/everywhere"
@@ -26,8 +27,9 @@ gem "puma", "~> 4.1"
 gem "sass-rails", ">= 6"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"
+gem "webpacker"
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem "redis", "~> 4.0"
 # Use Active Model has_secure_password
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
