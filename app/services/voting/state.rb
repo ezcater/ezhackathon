@@ -37,20 +37,20 @@ module Voting
       return @_next_award if defined? @_next_award
 
       @_next_award = if current_award.nil?
-        awards.first
-      elsif current_award == awards.last
-        nil
-      else
-        awards[current_award_index + 1]
-      end
+                       awards.first
+                     elsif current_award == awards.last
+                       nil
+                     else
+                       awards[current_award_index + 1]
+                     end
     end
 
     def current_award_index
       @_current_award_index ||= if current_award.nil?
-        0
-      else
-        awards.find_index { |award| award == current_award }
-      end
+                                  0
+                                else
+                                  awards.find_index { |award| award == current_award }
+                                end
     end
 
     def submit_label

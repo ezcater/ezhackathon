@@ -7,8 +7,8 @@ feature "when user votes on awards for an event" do
 
   let!(:awards) do
     [
-      "Most likely to make it into production",
       "Most likely to break production",
+      "Most likely to make it into production",
     ].map { |title| create(:award, title: title) }
   end
 
@@ -17,8 +17,13 @@ feature "when user votes on awards for an event" do
       "A useful idea",
       "An idea that just might work",
       "Hey, how about we convert the entire codebase to COBOL?",
-    ].map do |name|
-      create(:project, event: event, idea: create(:idea, name: name))
+    ].map.with_index do |name, index|
+      create(
+        :project,
+        event: event,
+        links: "https://example.com/#{index}",
+        idea: create(:idea, name: name)
+      )
     end
   end
 
@@ -38,9 +43,29 @@ feature "when user votes on awards for an event" do
 
     click_button "start_voting"
 
-    expect(page).to have_content "Award 1 of 2"
     projects.each do |project|
       expect(page).to have_content project.name
+      expect(page).to have_link nil, href: project.links
     end
+  end
+
+  scenario "user votes for all awards" do
+    original_vote_count = Vote.count
+
+    visit new_event_vote_path(event)
+    fill_in :username, with: "Test User"
+    click_button "start_voting"
+
+    expect(page).to have_content "Most likely to break production"
+    expect(page).to have_content "Award 1 of 2"
+    choose "Hey, how about we convert the entire codebase to COBOL?"
+    click_button "vote"
+
+    expect(page).to have_content "Most likely to make it into production"
+    choose "An idea that just might work"
+    click_button "vote"
+
+    expect(page).to have_content "Thank you for voting!"
+    expect(Vote.count).to eq original_vote_count + 2
   end
 end

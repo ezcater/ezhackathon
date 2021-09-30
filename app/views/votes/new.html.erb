@@ -1,7 +1,11 @@
 <h1><%= format_month(@event.time)%> Voting</h1>
 
-<% if @state.user_started_voting? %>
+<% if @state.user_finished_voting? %>
+  <p>Thank you for voting!</p>
+
+<% elsif @state.user_started_voting? %>
   <%= render partial: "voting", locals: { state: @state } %>
+
 <% else %>
   <h2>Welcome, we hacked, now we vote!</h2>
 

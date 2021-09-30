@@ -123,3 +123,8 @@ body {
     border-color: #17a2b8;
     color: #17a2b8;
  }
+
+ input[type=radio] {
+    width: auto;
+    margin-right: 10px;
+ }

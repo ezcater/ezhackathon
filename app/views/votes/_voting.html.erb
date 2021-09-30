@@ -5,7 +5,22 @@
   <%= f.hidden_field :award_id, value: state.current_award.id %>
   <%= f.hidden_field :username, value: state.username %>
 
-  <%= f.collection_radio_buttons(:project_id, state.shuffled_projects, :id, :name) %>
+  <%= f.collection_radio_buttons(
+    :project_id,
+    state.shuffled_projects,
+    :id,
+    :name,
+    {},
+    required: true
+  ) do |b| %>
+    <div class="radio-button-wrapper">
+      <%= b.radio_button %>
+      <%= b.label %>
+      <% if b.object.links.present? %>
+        (<a href="<%= b.object.links %>" target="_blank">project artifact</a>)
+      <% end %>
+    </div>
+  <% end %>
 
-  <%= f.submit state.submit_label, name: nil %>
+  <%= f.submit state.submit_label, name: nil, id: "vote" %>
 <% end %>
