@@ -5,4 +5,6 @@ class Project < ApplicationRecord
   belongs_to :idea
 
   has_many :votes, dependent: :destroy
+
+  delegate :name, to: :idea
 end

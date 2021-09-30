@@ -10,5 +10,6 @@ Ezhackathon::Application.routes.draw do
   resources :events, except: [:destroy] do
     resources :awards, only: [:index]
     resources :projects, except: [:destroy]
+    resource :vote, except: [:destroy]
   end
 end
