@@ -1,0 +1,25 @@
+<h1>Awards</h1>
+
+<ul>
+  <% @awards.each do |award, projects| %>
+    <li>
+      <h2><%= award.title %><h2/>
+
+      <ol>
+        <% projects.each.with_index do |project, index| %>
+          <li>
+            <% if voting_complete? %>
+              <% if index.zero? %>
+                Winner: <%= project.idea.name %>
+              <% else %>
+                Runner-up: <%= project.idea.name %>
+              <% end %>
+            <% else %>
+              <%= project.idea.name %> (<%= pluralize project.vote_count, "vote" %>)
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </li>
+  <% end %>
+</ul>
