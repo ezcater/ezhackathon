@@ -24,7 +24,7 @@
         <%=project.idea.description%>
       </div>
       <% if project.links.present? %>
-        <a href=<%=project.links%>>Project Artifact</a>
+        <a href="<%=project.links%>">Project Artifact</a>
       <% end %>
       <%= link_to "Edit Project", edit_event_project_path(@event, project), :method => "get" %>
     </div>
