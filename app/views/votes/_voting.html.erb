@@ -1,7 +1,7 @@
 <h2>"<%= state.current_award.title %>"</h2>
 <p>Award <%= state.current_award_index + 1 %> of <%= state.awards.size %></p>
 
-<%= form_with(url: "/events/#{state.event.id}/vote", local: true, method: :post) do |f| %>
+<%= form_with(url: event_vote_path(state.event), local: true, method: :post) do |f| %>
   <%= f.hidden_field :award_id, value: state.current_award.id %>
   <%= f.hidden_field :username, value: state.username %>
 
