@@ -16,10 +16,13 @@
 
   <% @projects.each do |project|%>
     <div class="project">
-      <a href=<%=project.links%>><%="#{project.idea.name}: #{project.idea.tagline}"%></a>
+      <h4><%="#{project.idea.name}: #{project.idea.tagline}"%></h4>
       <div class="tagline">
         <%=project.idea.description%>
       </div>
+      <% if project.links.present? %>
+        <a href="<%=project.links%>">Project Artifact</a>
+      <% end %>
       <%= link_to "Edit Project", edit_event_project_path(@event, project), :method => "get" %>
     </div>
   <% end %>
