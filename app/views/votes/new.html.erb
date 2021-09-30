@@ -7,31 +7,17 @@
   <%= render partial: "voting", locals: { state: @state } %>
 
 <% else %>
-  <h2>Welcome, we hacked, now we vote!</h2>
-
-  <p>
-    You will be voting on the following awards:
-  </p>
-
-  <ul>
-    <% @state.awards.each do |award| %>
-      <li>"<%= award.title %>"</li>
-    <% end %>
-  </ul>
-
-  <p>
-    across these projects:
-  </p>
-
-  <ul>
-    <% @state.ordered_projects.each do |project| %>
-      <li><%= project.idea.name %></li>
-    <% end %>
-  </ul>
-
-  <hr/>
-
   <% if @event.voting_started? %>
+    <h2>Welcome, we hacked, now we vote!</h2>
+
+    <p>
+      Voting is now open! You will be voting on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
+
+    <hr/>
+
     <p>To start voting, first enter a username.</p>
     <%= form_with(url: new_event_vote_path(@event), method: :get, local: true) do |f| %>
       <%= f.hidden_field :award_id, value: @state.next_award.id %>
@@ -39,7 +25,27 @@
 
       <%= f.submit("Start voting!", name: nil, id: "start_voting") %>
     <% end %>
+
+  <% elsif @event.voting_not_started? %>
+    <p>Voting has not yet started - please come back later!</p>
+
+    <hr/>
+
+    <p>
+      You will be voting on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
+
   <% else %>
-    <p>Voting is not enabled at this time</p>
+    <p>Voting is over for this event.</p>
+
+    <hr/>
+
+    <p>
+      Participants voted on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
   <% end %>
 <% end %>

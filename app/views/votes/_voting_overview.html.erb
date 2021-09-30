@@ -1,0 +1,21 @@
+<ul>
+  <% state.awards.each do |award| %>
+    <li>"<%= award.title %>"</li>
+  <% end %>
+</ul>
+
+<p>
+  across these projects:
+</p>
+
+<ul>
+  <% state.ordered_projects.each do |project| %>
+    <li>
+      <%= project.idea.name %>
+
+      <% if project.links.present? %>
+        (<a href="<%= project.links %>" target="_blank">project artifact</a>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>
