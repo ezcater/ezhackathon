@@ -68,7 +68,8 @@ CREATE TABLE public.events (
     participants character varying NOT NULL,
     demo_links text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    voting_status character varying DEFAULT 'voting_not_started'::character varying NOT NULL
 );
 
 
@@ -367,6 +368,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210929145743'),
 ('20210929151726'),
 ('20210929184506'),
-('20210930172845');
+('20210930172845'),
+('20210930181132');
 
 
