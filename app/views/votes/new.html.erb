@@ -7,33 +7,19 @@
   <%= render partial: "voting", locals: { state: @state } %>
 
 <% else %>
-  <h2 class="text-3xl font-bold">
-    Welcome, we hacked, now we vote!
-  </h2>
-
-  <p class="mt-8">
-    You will be voting on the following awards:
-  </p>
-
-  <ul class="mt-4 ml-8 list-disc leading-loose">
-    <% @state.awards.each do |award| %>
-      <li>"<%= award.title %>"</li>
-    <% end %>
-  </ul>
-
-  <p class="mt-4">
-    across these projects:
-  </p>
-
-  <ul class="mt-4 ml-8 list-disc leading-loose">
-    <% @state.ordered_projects.each do |project| %>
-      <li><%= project.idea.name %></li>
-    <% end %>
-  </ul>
-
-  <hr/>
-
   <% if @event.voting_started? %>
+    <h2 class="text-3xl font-bold">
+      Welcome, we hacked, now we vote!
+    </h2>
+
+    <p class="mt-8">
+      Voting is now open! You will be voting on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
+
+    <hr/>
+
     <p class="mt-4 mb-2">To start voting, first enter a username.</p>
     <%= form_with(url: new_event_vote_path(@event), method: :get, local: true) do |f| %>
       <%= f.hidden_field :award_id, value: @state.next_award.id %>
@@ -41,7 +27,31 @@
 
       <%= f.submit "Start voting!", name: nil, id: "start_voting", class: "block mt-4 px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
     <% end %>
+
+  <% elsif @event.voting_not_started? %>
+    <p class="mt-4 mb-2">
+    Voting has not yet started - please come back later!
+    </p>
+
+    <hr/>
+
+    <p class="mt-4 mb-2">
+      You will be voting on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
+
   <% else %>
-    <p class="mt-4 text-center">Voting is not enabled at this time</p>
+    <p class="mt-4 mb-2">
+    Voting is over for this event.
+    </p>
+
+    <hr/>
+
+    <p class="mt-4 mb-2">
+      Participants voted on the following awards:
+    </p>
+
+    <%= render partial: "voting_overview", locals: { state: @state } %>
   <% end %>
 <% end %>

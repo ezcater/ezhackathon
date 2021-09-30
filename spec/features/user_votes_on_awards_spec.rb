@@ -3,7 +3,7 @@
 require "rails_helper"
 
 feature "when user votes on awards for an event" do
-  let!(:event) { create(:event, time: "2021-09-30", voting_status: :voting_started) }
+  let!(:event) { create(:event, time: "2021-09-30") }
 
   let!(:awards) do
     [
@@ -28,6 +28,8 @@ feature "when user votes on awards for an event" do
   end
 
   scenario "user starts voting" do
+    event.update!(voting_status: :voting_started)
+
     visit new_event_vote_path(event)
     expect(page).to have_content "September 2021 Voting"
 
@@ -50,6 +52,8 @@ feature "when user votes on awards for an event" do
   end
 
   scenario "user votes for all awards" do
+    event.update!(voting_status: :voting_started)
+
     original_vote_count = Vote.count
 
     visit new_event_vote_path(event)
@@ -67,5 +71,25 @@ feature "when user votes on awards for an event" do
 
     expect(page).to have_content "Thank you for voting!"
     expect(Vote.count).to eq original_vote_count + 2
+  end
+
+  scenario "user cannot vote on event before voting started" do
+    event.update!(voting_status: :voting_not_started)
+
+    visit new_event_vote_path(event)
+    expect(page).not_to have_selector("#start_voting")
+
+    visit new_event_vote_path(event, award_id: awards.first.id, username: "cheater")
+    expect(page).not_to have_selector("vote")
+  end
+
+  scenario "user cannot vote on event after voting finished" do
+    event.update!(voting_status: :voting_finished)
+
+    visit new_event_vote_path(event)
+    expect(page).not_to have_selector("#start_voting")
+
+    visit new_event_vote_path(event, award_id: awards.first.id, username: "cheater")
+    expect(page).not_to have_selector("vote")
   end
 end

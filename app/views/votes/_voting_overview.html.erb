@@ -1,0 +1,21 @@
+<ul class="mt-4 ml-8 list-disc leading-loose">
+  <% state.awards.each do |award| %>
+    <li>"<%= award.title %>"</li>
+  <% end %>
+</ul>
+
+<p class="mt-4">
+  across these projects:
+</p>
+
+<ul class="mt-4 ml-8 list-disc leading-loose">
+  <% state.ordered_projects.each do |project| %>
+    <li>
+      <%= project.idea.name %>
+
+      <% if project.links.present? %>
+        (<a href="<%= project.links %>" target="_blank">project artifact</a>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>
