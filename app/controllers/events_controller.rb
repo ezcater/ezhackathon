@@ -46,6 +46,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:time, :place, :agenda, :participants, :demo_links)
+    params.require(:event).permit(:time, :place, :agenda, :participants, :demo_links, :voting_status)
   end
 end

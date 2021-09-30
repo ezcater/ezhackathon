@@ -18,13 +18,18 @@
         <%= f.label :participants, class: "required-field" %><br />
         <%= f.text_area :participants %>
     </div>
-    #confluence_link
+
     <div class="field">
         <%= f.label :demo_links, class: "required-field" %><br />
         <%= f.text_area :demo_links %>
     </div>
-    
-  <div class="actions">
-    <%= f.submit class: "button" %>
-  </div>
+
+    <div class="field">
+        <%= f.label :voting_status, class: "required-field" %><br />
+        <%= f.select :voting_status, voting_status_options(@event), {}, class: "full-width" %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit class: "button" %>
+    </div>
 <% end %>

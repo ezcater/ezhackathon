@@ -11,6 +11,28 @@
 <h4>Demos:</h4>
 <%= @event.demo_links%>
 
+<h4>Voting</h4>
+<% if @event.voting_not_started? %>
+  <p>
+    Voting has not yet started. However, you can get a sneaky preview of the
+    awards you'll be voting on
+    <a href="<%= new_event_vote_path(@event)%>">here</a>.
+  </p>
+
+<% elsif @event.voting_started? %>
+  <p>
+    Voting is open! Cast your vote
+    <a href="<%= new_event_vote_path(@event)%>">here</a>.
+  </p>
+
+<% else @event.voting_started? %>
+  <p>
+    Voting has now finished for this event. You can still have a look at the
+    awards and projects
+    <a href="<%= new_event_vote_path(@event)%>">here</a>.
+  </p>
+<% end %>
+
 <div class="projects">
   <h3>Projects:</h3>
 
