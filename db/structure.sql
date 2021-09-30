@@ -67,7 +67,6 @@ CREATE TABLE public.events (
     agenda text NOT NULL,
     participants character varying NOT NULL,
     demo_links text NOT NULL,
-    silly_answers text,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -367,6 +366,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210929144014'),
 ('20210929145743'),
 ('20210929151726'),
-('20210929184506');
+('20210929184506'),
+('20210930172845');
 
 
