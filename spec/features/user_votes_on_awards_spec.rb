@@ -3,7 +3,7 @@
 require "rails_helper"
 
 feature "when user votes on awards for an event" do
-  let!(:event) { create(:event, time: "2021-09-30") }
+  let!(:event) { create(:event, time: "2021-09-30", voting_status: :voting_started) }
 
   let!(:awards) do
     [

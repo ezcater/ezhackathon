@@ -31,9 +31,10 @@
     <% end %>
   </ul>
 
-  <% if @event.voting_enabled? %>
-    <p class="mt-4 mb-2">To start voting, first enter a username.</p>
+  <hr/>
 
+  <% if @event.voting_started? %>
+    <p class="mt-4 mb-2">To start voting, first enter a username.</p>
     <%= form_with(url: new_event_vote_path(@event), method: :get, local: true) do |f| %>
       <%= f.hidden_field :award_id, value: @state.next_award.id %>
       <%= f.text_field :username, placeholder: "Username", required: true %>
