@@ -9,13 +9,13 @@
         <% projects.each.with_index do |project, index| %>
           <li>
             <% if voting_complete? %>
-              <% if index.zero? %>
-                Winner: <%= project.idea.name %>
-              <% else %>
-                Runner-up: <%= project.idea.name %>
-              <% end %>
-            <% else %>
-              <%= project.idea.name %> (<%= pluralize project.vote_count, "vote" %>)
+              <%= award_place(index) %>:
+            <% end %>
+
+            <%= project.idea.name %>
+
+            <% unless voting_complete? %>
+              (<%= pluralize project.vote_count, "vote" %>)
             <% end %>
           </li>
         <% end %>
