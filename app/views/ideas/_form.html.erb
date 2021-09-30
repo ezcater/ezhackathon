@@ -1,50 +1,51 @@
 <%= form_for(@idea) do |f| %>
-    <div class="field">
-        <label class="required-field">What is your name?</label>
-        <%= f.text_field :submitter %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">What is your name?</label>
+    <%= f.text_field :submitter %>
+  </div>
 
-    <div class="field">
-    <label class="required-field">What is the name of your idea?</label>
-        <%= f.text_field :name %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">What is the name of your idea?</label>
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-        <%= f.label :tagline, class: "required-field" %></label>
-        <%= f.text_field :tagline %>
-    </div>
+  <div class="mt-8">
+    <%= f.label :tagline, class: "block font-bold" %></label>
+    <%= f.text_field :tagline %>
+  </div>
 
-    <div class="field">
-    <label class="required-field">Describe your idea:</label>
-        <%= f.text_field :description %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">Describe your idea:</label>
+    <%= f.text_field :description %>
+  </div>
 
-    <div class="field">
-    <label class="required-field">What resources do you need to be successful? (a skillset, person, access to a technology etc)</label>
-        <%= f.text_field :resources %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">What resources do you need to be successful? (a skillset, person, access to a technology etc)</label>
+    <%= f.text_field :resources %>
+  </div>
 
-    <div class="field">
-        <%= f.label "This idea will need access to Snowflake (data):" %> </label>
-        <%= f.check_box :snowflake_access %> </label>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">This idea will need access to Snowflake (data):
+      <%= f.check_box :snowflake_access %>
+    </label>
+  </div>
 
-    <div class="field">
-    <label class="required-field">What value will this idea deliver?</label>
-        <%= f.text_field :value_delivered %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">What value will this idea deliver?</label>
+    <%= f.text_field :value_delivered %>
+  </div>
 
-    <div class="field">
-    <label class="required-field">What is your goal for this idea in the hackathon?</label>
-        <%= f.text_field :goal %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">What is your goal for this idea in the hackathon?</label>
+    <%= f.text_field :goal %>
+  </div>
 
-    <div class="field">
-    <label class="required-field">How many "people hours" do you estimate it will take to plan, scope and demo?</label>
-        <%= f.text_field :hours_estimate %>
-    </div>
+  <div class="mt-8">
+    <label class="block font-bold">How many "people hours" do you estimate it will take to plan, scope and demo?</label>
+    <%= f.text_field :hours_estimate %>
+  </div>
 
-  <div class="actions">
-    <%= f.submit class: "button" %>
+  <div class="my-8">
+    <%= f.submit class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
   </div>
 <% end %>

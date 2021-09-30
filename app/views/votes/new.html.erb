@@ -1,45 +1,46 @@
-<h1><%= format_month(@event.time)%> Voting</h1>
+<% content_for(:title) { "#{format_month(@event.time)} Voting" } %>
 
 <% if @state.user_finished_voting? %>
-  <p>Thank you for voting!</p>
+  <p class="text-center">Thank you for voting!</p>
 
 <% elsif @state.user_started_voting? %>
   <%= render partial: "voting", locals: { state: @state } %>
 
 <% else %>
-  <h2>Welcome, we hacked, now we vote!</h2>
+  <h2 class="text-3xl font-bold">
+    Welcome, we hacked, now we vote!
+  </h2>
 
-  <p>
+  <p class="mt-8">
     You will be voting on the following awards:
   </p>
 
-  <ul>
+  <ul class="mt-4 ml-8 list-disc leading-loose">
     <% @state.awards.each do |award| %>
       <li>"<%= award.title %>"</li>
     <% end %>
   </ul>
 
-  <p>
+  <p class="mt-4">
     across these projects:
   </p>
 
-  <ul>
+  <ul class="mt-4 ml-8 list-disc leading-loose">
     <% @state.ordered_projects.each do |project| %>
       <li><%= project.idea.name %></li>
     <% end %>
   </ul>
 
-  <hr/>
-
   <% if @event.voting_enabled? %>
-    <p>To start voting, first enter a username.</p>
+    <p class="mt-4 mb-2">To start voting, first enter a username.</p>
+
     <%= form_with(url: new_event_vote_path(@event), method: :get, local: true) do |f| %>
       <%= f.hidden_field :award_id, value: @state.next_award.id %>
       <%= f.text_field :username, placeholder: "Username", required: true %>
 
-      <%= f.submit("Start voting!", name: nil, id: "start_voting") %>
+      <%= f.submit "Start voting!", name: nil, id: "start_voting", class: "block mt-4 px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
     <% end %>
   <% else %>
-    <p>Voting is not enabled at this time</p>
+    <p class="mt-4 text-center">Voting is not enabled at this time</p>
   <% end %>
 <% end %>

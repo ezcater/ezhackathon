@@ -1,24 +1,33 @@
-<p><%= link_to "Back to Ideas", ideas_path %></p>
-<h1> <%=@idea.name%> </h1>
-<h3> <%=@idea.tagline%> </h3>
-Submitted by: <%= @idea.submitter %>
+<% content_for(:title) { @idea.name } %>
 
-<h4>Description:</h4>
-<%= @idea.description%>
+<p class="text-center mb-8">
+  <%= link_to "Back to Ideas", ideas_path, class: "text-ezgreen" %>
+</p>
 
-<h4>What resources do you need to be successful? (a skillset, person, access to a technology etc)</h4>
-<%= @idea.resources%>
+<h3 class="text-2xl"><%= @idea.tagline %></h3>
+<p>Submitted by: <%= @idea.submitter %></p>
 
-<h4>This idea will need access to Snowflake (data):</h4>
-<%= @idea.snowflake_access%>
+<h4 class="mt-6 text-xl font-bold">Description:</h4>
+<p><%= @idea.description %></p>
 
-<h4>What value will this idea deliver?</h4>
-<%= @idea.value_delivered%>
+<h4 class="mt-6 text-xl font-bold">What resources do you need to be successful? (a skillset, person, access to a technology etc)</h4>
+<p><%= @idea.resources %><p>
 
-<h4>What is your goal for this idea in the hackathon?</h4>
-<%= @idea.goal%>
+<h4 class="mt-6 text-xl font-bold">This idea will need access to Snowflake (data):</h4>
+<p><%= @idea.snowflake_access %><p>
 
-<h4>How many "people hours" do you estimate it will take to plan, scope and demo?</h4>
-<%= @idea.hours_estimate%>
-<%= button_to "Edit", edit_idea_path, :method => "get", class:"button" %>
+<h4 class="mt-6 text-xl font-bold">What value will this idea deliver?</h4>
+<p><%= @idea.value_delivered %><p>
 
+<h4 class="mt-6 text-xl font-bold">What is your goal for this idea in the hackathon?</h4>
+<p><%= @idea.goal %><p>
+
+<h4 class="mt-6 text-xl font-bold">How many "people hours" do you estimate it will take to plan, scope and demo?</h4>
+<p><%= @idea.hours_estimate %><p>
+
+<h4 class="mt-6 text-xl font-bold">Additional Comments:</h4>
+<p><%= @idea.additional_comments.presence || "None." %></p>
+
+<div class="my-8">
+  <%= link_to "Edit", edit_idea_path(@idea), class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+</p>

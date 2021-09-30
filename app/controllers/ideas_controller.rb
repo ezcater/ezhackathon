@@ -2,7 +2,7 @@
 
 class IdeasController < ApplicationController
   def index
-    @ideas = Idea.all
+    @ideas = Idea.without_projects
   end
 
   def new

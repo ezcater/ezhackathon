@@ -1,9 +1,13 @@
-<h1>Events</h1>
+<% content_for(:title) { "Events" } %>
 
-<%= button_to "Submit a new event", new_event_path, :method => "get", class: "button" %>
-
-<ul>
+<ul class="list-disc">
   <% @events.each do |event| %>
-    <ul><%= link_to event.time.strftime("%A %B %d, %Y"), event %></ul>
+    <li>
+      <%= link_to format_date(event.time), event, class: "text-ezgreen text-2xl font-bold hover:underline" %>
+    </li>
   <% end %>
 </ul>
+
+<div class="my-8">
+  <%= link_to "Create an Event", new_event_path, class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+</div>

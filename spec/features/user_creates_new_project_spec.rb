@@ -8,7 +8,7 @@ feature "when user creates a new project" do
 
   scenario "user successfully creates new project" do
     visit event_path(event)
-    click_button "Add a New Project"
+    click_link "Add a New Project"
 
     expect(page).to have_content "Submit a New Project"
 
@@ -22,7 +22,7 @@ feature "when user creates a new project" do
 
   scenario "user does not enter all required information" do
     visit event_path(event)
-    click_button "Add a New Project"
+    click_link "Add a New Project"
 
     click_button "Create Project"
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Ezhackathon::Application.routes.draw do
-  root to: "layouts#index"
   namespace :api, defaults: { format: "json" } do
     resource :health_check, only: :show
   end
@@ -12,4 +11,6 @@ Ezhackathon::Application.routes.draw do
     resources :projects, except: [:destroy]
     resource :vote, except: [:destroy]
   end
+
+  root to: "events#index"
 end

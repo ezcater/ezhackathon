@@ -1,18 +1,20 @@
-<h1>Awards</h1>
+<% content_for(:title) { "Awards" } %>
 
 <ul>
   <% @awards.each do |award, projects| %>
-    <li>
-      <h2><%= award.title %><h2/>
+    <li class="mt-8">
+      <h2 class="text-3xl font-bold"><%= award.title %></h2>
 
-      <ol>
+      <ol class="mt-2 ml-9 list-decimal leading-loose">
         <% projects.each.with_index do |project, index| %>
           <li>
-            <% if voting_complete? %>
-              <%= award_place(index) %>:
-            <% end %>
+            <span class="font-semibold">
+              <% if voting_complete? %>
+                <%= award_place(index) %>:
+              <% end %>
 
-            <%= project.idea.name %>
+              <%= link_to project.idea.name, "#", class: "text-ezgreen hover:underline" %>
+            </span>
 
             <% unless voting_complete? %>
               (<%= pluralize project.vote_count, "vote" %>)
