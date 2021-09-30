@@ -6,6 +6,6 @@ FactoryBot.define do
     event
     project
 
-    name { "Lil Sebastian" }
+    name { |n| "Lil Sebastian #{n}" }
   end
 end
