@@ -55,7 +55,9 @@ body {
  }
 
  .project {
-    margin-bottom: 2em;
+    border-bottom: 3px dashed rgb(81, 190, 81);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
  }
 
  .tagline {
