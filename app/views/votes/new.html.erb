@@ -1,7 +1,7 @@
 <h1><%= format_month(@event.time)%> Voting</h1>
 
-<% if user_started_voting? %>
-  <%= render partial: "voting", locals: { event: @event, username: @username } %>
+<% if @strategy.user_started_voting? %>
+  <%= render partial: "voting", locals: { strategy: @strategy } %>
 <% else %>
   <h2>Welcome, we hacked, now we vote!</h2>
 
@@ -10,7 +10,7 @@
   </p>
 
   <ul>
-    <% Award.all.each do |award| %>
+    <% @strategy.awards.each do |award| %>
       <li>"<%= award.title %>"</li>
     <% end %>
   </ul>
@@ -20,7 +20,7 @@
   </p>
 
   <ul>
-    <% @event.projects.includes(:idea).order("ideas.name").each do |project| %>
+    <% @strategy.projects.each do |project| %>
       <li><%= project.idea.name %></li>
     <% end %>
   </ul>
