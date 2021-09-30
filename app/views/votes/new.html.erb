@@ -1,13 +1,13 @@
 <h1><%= format_month(@event.time)%> Voting</h1>
 
-<% if @state.user_finished_voting? %>
-  <p>Thank you for voting!</p>
+<% if @event.voting_started? %>
+  <% if @state.user_finished_voting? %>
+    <p>Thank you for voting!</p>
 
-<% elsif @state.user_started_voting? %>
-  <%= render partial: "voting", locals: { state: @state } %>
+  <% elsif @state.user_started_voting? %>
+    <%= render partial: "voting", locals: { state: @state } %>
 
-<% else %>
-  <% if @event.voting_started? %>
+  <% else %>
     <h2>Welcome, we hacked, now we vote!</h2>
 
     <p>
@@ -26,26 +26,27 @@
       <%= f.submit("Start voting!", name: nil, id: "start_voting") %>
     <% end %>
 
-  <% elsif @event.voting_not_started? %>
-    <p>Voting has not yet started - please come back later!</p>
-
-    <hr/>
-
-    <p>
-      You will be voting on the following awards:
-    </p>
-
-    <%= render partial: "voting_overview", locals: { state: @state } %>
-
-  <% else %>
-    <p>Voting is over for this event.</p>
-
-    <hr/>
-
-    <p>
-      Participants voted on the following awards:
-    </p>
-
-    <%= render partial: "voting_overview", locals: { state: @state } %>
   <% end %>
+
+<% elsif @event.voting_not_started? %>
+  <p>Voting has not yet started - please come back later!</p>
+
+  <hr/>
+
+  <p>
+    You will be voting on the following awards:
+  </p>
+
+  <%= render partial: "voting_overview", locals: { state: @state } %>
+
+<% else %>
+  <p>Voting is over for this event.</p>
+
+  <hr/>
+
+  <p>
+    Participants voted on the following awards:
+  </p>
+
+  <%= render partial: "voting_overview", locals: { state: @state } %>
 <% end %>

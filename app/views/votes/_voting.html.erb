@@ -3,7 +3,6 @@
 
 <%= form_with(url: event_vote_path(state.event), local: true, method: :post) do |f| %>
   <%= f.hidden_field :award_id, value: state.current_award.id %>
-  <%= f.hidden_field :username, value: state.username %>
 
   <%= f.collection_radio_buttons(
     :project_id,
