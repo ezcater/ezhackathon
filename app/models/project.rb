@@ -6,5 +6,7 @@ class Project < ApplicationRecord
 
   has_many :votes, dependent: :destroy
 
+  validates :links, url: { allow_blank: true }
+
   delegate :name, to: :idea
 end
