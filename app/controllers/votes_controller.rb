@@ -6,7 +6,11 @@ class VotesController < ApplicationController
   before_action :load_state
   before_action :ensure_can_vote
 
-  def new; end
+  def new
+    if params[:username]
+      @control_strategy.start_voting(params[:username])
+    end
+  end
 
   def create
     project = Project.find(params[:project_id])
@@ -27,7 +31,10 @@ class VotesController < ApplicationController
   end
 
   def load_control_strategy
-    @control_strategy = ::Voting::UrlControlledVotingStrategy.new(params: params)
+    @control_strategy = ::Voting::CookieControlledVotingStrategy.new(
+      cookies: cookies,
+      current_award_id: params[:award_id]
+    )
   end
 
   def load_state
@@ -35,7 +42,7 @@ class VotesController < ApplicationController
   end
 
   def ensure_can_vote
-    unless @event.voting_started? || !@state.user_started_voting?
+    if !@event.voting_started? && params[:award_id]
       flash[:notice] = "Voting is not currently enabled"
       redirect_to new_event_vote_path(@event)
     end

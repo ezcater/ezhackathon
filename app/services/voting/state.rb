@@ -11,8 +11,6 @@ module Voting
 
     delegate :username,
              :user_started_voting?,
-             :user_finished_voting?,
-             :current_award_id,
              to: :@control_strategy
 
     def ordered_projects
@@ -23,6 +21,13 @@ module Voting
       projects.shuffle
     end
 
+    def user_finished_voting?
+      return @_user_finished_voting if defined? @_user_finished_voting
+
+      vote_count = Vote.where(name: username, event: event).count
+      @_user_finished_voting = vote_count == awards.size
+    end
+
     def awards
       @_awards ||= Award.order(:title)
     end
@@ -30,13 +35,14 @@ module Voting
     def current_award
       return @_current_award if defined? @_current_award
 
-      @_current_award = current_award_id.nil? ? nil : Award.find(current_award_id)
+      current_award_id = @control_strategy.current_award_id
+      @_current_award = current_award_id.nil? ? awards.first : awards.find(current_award_id)
     end
 
     def next_award
       return @_next_award if defined? @_next_award
 
-      @_next_award = if current_award.nil?
+      @_next_award = if @control_strategy.current_award_id.nil?
                        awards.first
                      elsif current_award == awards.last
                        nil
@@ -46,7 +52,7 @@ module Voting
     end
 
     def current_award_index
-      @_current_award_index ||= if current_award.nil?
+      @_current_award_index ||= if @control_strategy.current_award_id.nil?
                                   0
                                 else
                                   awards.find_index { |award| award == current_award }
