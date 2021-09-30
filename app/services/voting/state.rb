@@ -24,7 +24,7 @@ module Voting
     end
 
     def awards
-      @_awards ||= Award.order(:title)
+      Award.order(:title)
     end
 
     def current_award
@@ -41,7 +41,7 @@ module Voting
                      elsif current_award == awards.last
                        nil
                      else
-                       awards[current_award_index + 1]
+                       awards.offset(current_award_index + 1).first
                      end
     end
 
