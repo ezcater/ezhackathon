@@ -1,31 +1,31 @@
 <%= form_for [@event, @project] do |f| %>
-    <div class="field">
-        <%= f.label "Which idea is project based on?" %><br />
-        <%= f.collection_select(
-            :idea_id,
-            available_ideas_for(@project),
-            :id,
-            :name,
-            { prompt: "Please select the idea this project will work on", include_blank: true },
-            {
-                class: "full-width",
-                required: true,
-                disabled: @project.persisted?
-            }
-        ) %>
-    </div>
+  <div class="mt-8">
+    <%= f.label "Which idea is project based on?", class: "block font-bold" %>
+    <%= f.collection_select(
+        :idea_id,
+        available_ideas_for(@project),
+        :id,
+        :name,
+        { prompt: "Please select the idea this project will work on", include_blank: true },
+        {
+            class: "full-width",
+            required: true,
+            disabled: @project.persisted?
+        }
+    ) %>
+  </div>
 
-    <div class="field">
-        <%= f.label "Add any links to your final artifacts" %><br />
-        <%= f.text_field :links, value: @project.links %>
-    </div>
+  <div class="mt-8">
+    <%= f.label "Add any links to your final artifacts", class: "block font-bold" %>
+    <%= f.text_field :links, value: @project.links %>
+  </div>
 
-    <div class="field">
-        <%= f.label :additional_comments %><br />
-        <%= f.text_field :additional_comments %>
-    </div>
+  <div class="mt-8">
+    <%= f.label :additional_comments, class: "block font-bold" %>
+    <%= f.text_field :additional_comments %>
+  </div>
 
-    <div class="actions">
-        <%= f.submit class: "button" %>
-    </div>
+  <div class="mt-8">
+    <%= f.submit class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+  </div>
 <% end %>

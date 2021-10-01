@@ -1,26 +1,31 @@
-<h2>"<%= state.current_award.title %>"</h2>
-<p>Award <%= state.current_award_index + 1 %> of <%= state.awards.size %></p>
+<div class="text-center">
+  <h2 class="text-3xl font-bold">
+    "<%= state.current_award.title %>"
+  </h2>
 
-<%= form_with(url: event_vote_path(state.event), local: true, method: :post) do |f| %>
-  <%= f.hidden_field :award_id, value: state.current_award.id %>
-  <%= f.hidden_field :username, value: state.username %>
+  <p class="mt-2 mb-6">Award <%= state.current_award_index + 1 %> of <%= state.awards.size %></p>
 
-  <%= f.collection_radio_buttons(
-    :project_id,
-    state.shuffled_projects,
-    :id,
-    :name,
-    {},
-    required: true
-  ) do |b| %>
-    <div class="radio-button-wrapper">
-      <%= b.radio_button %>
-      <%= b.label %>
-      <% if b.object.links.present? %>
-        (<a href="<%= b.object.links %>" target="_blank">project artifact</a>)
-      <% end %>
-    </div>
+  <%= form_with(url: event_vote_path(state.event), local: true, method: :post, class: "leading-loose") do |f| %>
+    <%= f.hidden_field :award_id, value: state.current_award.id %>
+    <%= f.hidden_field :username, value: state.username %>
+
+    <%= f.collection_radio_buttons(
+      :project_id,
+      state.shuffled_projects,
+      :id,
+      :name,
+      {},
+      required: true
+    ) do |b| %>
+      <div class="w-6/12 mx-auto text-left">
+        <%= b.radio_button %>
+        <%= b.label %>
+        <% if b.object.links.present? %>
+          (<a href="<%= b.object.links %>" target="_blank">project artifact</a>)
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= f.submit state.submit_label, name: nil, id: "vote", class: "block mt-4 mx-auto px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
   <% end %>
-
-  <%= f.submit state.submit_label, name: nil, id: "vote" %>
-<% end %>
+</div>

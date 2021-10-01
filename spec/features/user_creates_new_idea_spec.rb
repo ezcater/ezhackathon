@@ -5,7 +5,7 @@ require "rails_helper"
 feature "when user creates a new idea" do
   scenario "user successfully creates new idea" do
     visit "/ideas"
-    click_button "Submit a new idea"
+    click_link "Submit an Idea"
 
     expect(page).to have_content "Submit an Idea"
 
@@ -28,7 +28,7 @@ feature "when user creates a new idea" do
 
   scenario "user does not enter all required information" do
     visit "/ideas"
-    click_button "Submit a new idea"
+    click_link "Submit an Idea"
 
     expect(page).to have_content "Submit an Idea"
 

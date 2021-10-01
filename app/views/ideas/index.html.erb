@@ -1,10 +1,17 @@
-<h1>Ideas</h1>
+<% content_for(:title) { "Ideas" } %>
 
-<%= button_to "Submit a new idea", new_idea_path, :method => "get", class:"button" %>
+<div class="my-8 flex items-center">
+  <%= link_to "Submit an Idea", new_idea_path, class: "mx-auto block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+</div>
 
-<ul>
-  <% @ideas.each do |idea| %>
-    <ul><%= link_to idea.name, idea %></ul>
-    <p> <%= idea.tagline %> </p>
-  <% end %>
-</ul>
+<% @ideas.each do |idea| %>
+  <div class="mt-4">
+    <h4 class="text-2xl font-semibold">
+      <%= link_to idea.name, idea, class: "text-ezgreen hover:underline" %>
+    </h4>
+
+    <p>
+      <%= idea.tagline %>
+    </p>
+  </div>
+<% end %>

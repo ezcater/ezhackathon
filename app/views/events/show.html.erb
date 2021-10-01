@@ -1,34 +1,41 @@
-<p><%= link_to "Back to Events", events_path %></p>
-<h1> <%= format_date(@event.time) %> </h1>
-<h3> <%= @event.place%> </h3>
+<%= content_for(:title) { format_date(@event.time) } %>
 
-<h4>Agenda:</h4>
-<pre><%= @event.agenda%></pre>
+<% unless current_page?(root_path) %>
+  <p class="text-center">
+    <%= link_to "Back to Events", events_path, class: "text-ezgreen" %>
+  </p>
+<% end %>
 
-<h4>Participants:</h4>
-<%= @event.participants%>
+<h3 class="mt-8 text-3xl font-bold">Agenda</h3>
+<p><%= @event.agenda %></p>
 
-<h4>Demos:</h4>
-<%= @event.demo_links%>
+<h3 class="mt-8 text-3xl font-bold">Participants</h3>
+<p><%= @event.participants %></p>
 
-<div class="projects">
-  <h3>Projects:</h3>
+<h3 class="mt-8 text-3xl font-bold">Demos</h3>
+<p><%= @event.demo_links %></p>
 
-  <% @projects.each do |project|%>
-    <div class="project">
-      <h4><%= link_to "#{project.idea.name}: #{project.idea.tagline}", event_project_path(@event, project), :method => "get" %></h4>
-      <div class="tagline">
-        <%=project.idea.description%>
-      </div>
+<div>
+  <h3 class="mt-8 text-3xl font-bold">Projects</h3>
+
+  <% @event.projects.each do |project|%>
+    <div class="mt-4">
+      <h4 class="text-2xl font-semibold">
+        <%= link_to "#{project.idea.name}: #{project.idea.tagline}", event_project_path(@event, project), class: "text-ezgreen hover:underline" %>
+      </h4>
+
+      <p>
+        <%= project.idea.description %>
+      </p>
+
       <% if project.links.present? %>
-        <a href="<%=project.links%>">Project Artifact</a>
+        <p><a href="<%=project.links%>">Project Artifact</a></p>
       <% end %>
-      <%= link_to "Edit Project", edit_event_project_path(@event, project), :method => "get" %>
     </div>
   <% end %>
-
-  <%= button_to "Add a New Project", new_event_project_path(@event), :method => "get", class:"button" %>
 </div>
 
-  <%= button_to "Edit Event", edit_event_path, :method => "get", class:"button" %>
-
+<div class="my-8">
+  <%= link_to "Add a New Project", new_event_project_path(@event), class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+  <%= link_to "Edit Event", edit_event_path(@event), class: "inline-block px-5 py-3 font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+</div>

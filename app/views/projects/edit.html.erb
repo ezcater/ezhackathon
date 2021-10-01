@@ -1,2 +1,7 @@
-<h2>Edit Project: <%= @project.idea.name %> for the <%= format_date(@event.time) %> EzHackathon</h2>
-<%= render :partial => '/projects/form' %>
+<% content_for(:title) { "Edit Project" } %>
+
+<h2 class="text-center">
+  <%= @project.idea.name %> for the <%= format_date(@event.time) %> EzHackathon
+</h2>
+
+<%= render partial: "/projects/form" %>

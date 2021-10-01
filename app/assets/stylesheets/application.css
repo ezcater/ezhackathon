@@ -14,123 +14,31 @@
  *= require_self
  */
 
-body {
-     margin-top: 5%;
-     margin-inline: 25%;
-     font-size: 200%;
-     font-family:monospace;
- }
-
- h1, h3 {
-     text-align: center;
-     border-style: dashed;
-     border-color: rgb(81, 190, 81);
- }
-
- .required-field::after {
-    content: "*";
-    color: red;
+.bg-ezgreen,
+:hover.hover\:bg-ezgreen {
+  background-color: #51BE51;
 }
 
- .button {
-    width: 70%;
-    font-size: 100%;
-    font-family: monospace;
-    text-align: center;
-    margin-top: 5%;
-    margin-inline: 15%;
-    border-style: solid;
-    border-color: rgb(81, 190, 81);
-    background-color: white;
-    border-radius: 8px;
-    padding: 2%
- }
+.bg-ezgreen-dark,
+:hover.hover\:bg-ezgreen-dark {
+  background-color: #218E21;
+}
 
- .projects {
-    border-style: solid;
-    border-color: rgb(81, 190, 81);
-    border-radius: 8px;
-    margin-top: 5%;
-    padding: 5%;
- }
+.text-ezgreen,
+:hover.hover\:text-ezgreen {
+  color: #51BE51;
+}
 
- .project {
-    border-bottom: 3px dashed rgb(81, 190, 81);
-    margin-bottom: 1em;
-    padding-bottom: 1em;
- }
+[type="text"],
+textarea {
+  width: 100%;
+  font-size: 100%;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
 
- .tagline {
-     margin-bottom: 1em;
- }
-
- input, textarea {
-    width: 100%;
-    font-size: 100%;
-    font-family: monospace;
-    margin-top: 5%;
-    border-style: solid;
-    border-color: rgb(81, 190, 81);
-    background-color: white;
-    border-radius: 8px;
-    padding: 2%;
-    white-space: pre-wrap;
- }
-
- select {
-    width: 25%;
-    font-size: 100%;
-    font-family: monospace;
-    margin-top: 5%;
-    border-style: solid;
-    border-color: rgb(81, 190, 81);
-    background-color: white;
-    border-radius: 8px;
-    padding: 2%
- }
-
- .full-width {
-    width: 100%
- }
-
-
- .button:hover {
-     background-color: lightgreen;
-     cursor: pointer;
- }
-
- div.field {
-    margin-top: 5%;
- }
-
- .flash_messages div {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid;
- }
-
- .flash_messages .errors {
-    border-color: #dc3545;
-    color: #dc3545;
- }
-
- .flash_messages .success {
-    border-color: #28a745;
-    color: #28a745;
- }
-
- .flash_messages .info {
-    border-color: #17a2b8;
-    color: #17a2b8;
- }
-
- input[type=radio] {
-    width: auto;
-    margin-right: 10px;
- }
-
-.project-artifact {
-  margin: 1em 0;
+[type="text"]:focus,
+textarea:focus {
+  border-color: #51BE51;
+  --tw-ring-color: #51BE51;
 }

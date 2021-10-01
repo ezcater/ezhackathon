@@ -1,31 +1,39 @@
-<p><%= link_to "Back to Event", event_path(@project.event) %></p>
-<h1> <%=@project.name%> </h1>
-<h3> <%=@project.idea.tagline%> </h3>
-Submitted by: <%= @project.idea.submitter %>
+<% content_for(:title) { @project.name } %>
 
-<div class="project-artifact">
-  <% if @project.links.present? %>
-    <a href="<%=@project.links%>">Project Artifact</a>
-  <% end %>
-</div>
-<h4>Description:</h4>
-<%= @project.idea.description%>
+<p class="text-center mb-8">
+  <%= link_to "Back to Event", event_path(@project.event), class: "text-ezgreen" %>
+</p>
 
-<h4>What resources do you need to be successful? (a skillset, person, access to a technology etc)</h4>
-<%= @project.idea.resources%>
+<h3 class="text-2xl"><%= @project.idea.tagline %></h3>
+<p>Submitted by: <%= @project.idea.submitter %></p>
 
-<h4>This idea will need access to Snowflake (data):</h4>
-<%= @project.idea.snowflake_access%>
+<% if @project.links.present? %>
+  <p class="mt-4">
+    <%= link_to "Project Artifact", @project.links, class: "text-ezgreen hover:underline" %>
+  </p>
+<% end %>
 
-<h4>What value will this idea deliver?</h4>
-<%= @project.idea.value_delivered%>
+<h4 class="mt-6 text-xl font-bold">Description:</h4>
+<p><%= @project.idea.description %></p>
 
-<h4>What is your goal for this idea in the hackathon?</h4>
-<%= @project.idea.goal%>
+<h4 class="mt-6 text-xl font-bold">What resources do you need to be successful? (a skillset, person, access to a technology etc)</h4>
+<p><%= @project.idea.resources %><p>
 
-<h4>How many "people hours" do you estimate it will take to plan, scope and demo?</h4>
-<%= @project.idea.hours_estimate%>
+<h4 class="mt-6 text-xl font-bold">This idea will need access to Snowflake (data):</h4>
+<p><%= @project.idea.snowflake_access %><p>
 
-<h4>Additional Comments:</h4>
-<%= @project.additional_comments %>
-<%= button_to "Edit", edit_event_project_path, :method => "get", class:"button" %>
+<h4 class="mt-6 text-xl font-bold">What value will this idea deliver?</h4>
+<p><%= @project.idea.value_delivered %><p>
+
+<h4 class="mt-6 text-xl font-bold">What is your goal for this idea in the hackathon?</h4>
+<p><%= @project.idea.goal %><p>
+
+<h4 class="mt-6 text-xl font-bold">How many "people hours" do you estimate it will take to plan, scope and demo?</h4>
+<p><%= @project.idea.hours_estimate %><p>
+
+<h4 class="mt-6 text-xl font-bold">Additional Comments:</h4>
+<p><%= @project.additional_comments.presence || "None." %></p>
+
+<div class="my-8">
+  <%= link_to "Edit", edit_event_project_path(@project), class: "inline-block px-5 py-3 text-base font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark" %>
+</p>

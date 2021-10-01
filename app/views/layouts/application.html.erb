@@ -1,16 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ezhackathon</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en-US" class="antialiased text-gray-900 font-mono">
+<head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <title>Ezhackathon<%= content_for?(:title) ? " - #{yield(:title)}" : nil %></title>
 
-  <body>
+  <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+<header class="relative max-w-screen-lg mx-auto mb-10">
+  <div class="px-4 sm:px-6 md:px-8">
+    <div class="border-b border-gray-200 py-6 flex items-center justify-between mb-16 sm:mb-20 -mx-4 px-4 sm:mx-0">
+      <a href="/" class="flex group">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 mr-2 self-center text-ezgreen fill-current opacity-75 group-hover:opacity-100" aria-labelledby="header-icon" role="img">
+          <title id="header-icon">A code icon.</title>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+
+        <h1 class="text-3xl tracking-tight text-gray-900 font-semibold self-center">EzHackathons</h1>
+      </a>
+
+      <div class="flex space-x-6 sm:space-x-10">
+        <a href="/events" class="text-gray-900 px-5 py-2 rounded text-base leading-6 font-bold hover:bg-ezgreen hover:text-white">
+          Past Events
+        </a>
+        <a href="/ideas" class="text-gray-900 px-5 py-2 rounded text-base leading-6 font-bold hover:bg-ezgreen hover:text-white">
+          Ideas
+        </a>
+      </div>
+    </div>
+
     <%= render partial: "flash_messages" %>
+
+    <h1 class="text-4xl sm:text-6xl lg:text-5xl leading-none font-extrabold tracking-tight text-gray-900 text-center">
+      <%= yield :title %>
+    </h1>
+  </div>
+</header>
+
+
+<div class="space-y-20 sm:space-y-32 md:space-y-40 max-w-screen-lg mx-auto">
+  <div class="px-4 sm:px-6 md:px-8">
     <%= yield %>
-  </body>
+  </div>
+</div>
+
+</body>
 </html>

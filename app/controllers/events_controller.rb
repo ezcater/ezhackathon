@@ -2,7 +2,13 @@
 
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    if request.path == "/"
+      @event = Event.order(time: :desc).first
+
+      render :show
+    else
+      @events = Event.order(time: :desc).all
+    end
   end
 
   def new
@@ -39,8 +45,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @projects = @event.projects
-    render :show
   end
 
   private
