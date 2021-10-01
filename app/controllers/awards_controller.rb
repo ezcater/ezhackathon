@@ -6,6 +6,10 @@ class AwardsController < ApplicationController
   def index
     @event  = event
     @awards = awards_with_projects_ordered_by_votes
+
+    if event.voting_started?
+      @refresh_interval = 5
+    end
   end
 
   protected
