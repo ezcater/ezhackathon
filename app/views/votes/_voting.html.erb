@@ -21,7 +21,9 @@
         <%= b.radio_button %>
         <%= b.label %>
         <% if b.object.links.present? %>
-          (<a href="<%= b.object.links %>" target="_blank">project artifact</a>)
+          <a href="<%= b.object.links %>" target="_blank" class="text-ezgreen hover:underline">
+            (project artifact)
+          </a>
         <% end %>
       </div>
     <% end %>
