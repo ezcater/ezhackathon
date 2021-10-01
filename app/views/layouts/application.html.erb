@@ -3,6 +3,9 @@
 <head>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <% if @refresh_interval %>
+    <meta http-equiv="refresh" content="<%= @refresh_interval %>">
+  <% end %>
 
   <title>Ezhackathon<%= content_for?(:title) ? " - #{yield(:title)}" : nil %></title>
 

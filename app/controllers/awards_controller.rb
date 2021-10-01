@@ -6,6 +6,10 @@ class AwardsController < ApplicationController
   def index
     @event  = event
     @awards = awards_with_projects_ordered_by_votes
+
+    if event.voting_started?
+      @refresh_interval = 5
+    end
   end
 
   protected
@@ -21,7 +25,7 @@ class AwardsController < ApplicationController
   end
 
   def project_limit
-    if voting_complete?
+    if event.voting_finished?
       VOTING_COMPLETE_WINNERS
     end
   end
@@ -34,9 +38,4 @@ class AwardsController < ApplicationController
       group(:id).
       order(vote_count: :desc)
   end
-
-  def voting_complete?
-    params[:voting_complete].present?
-  end
-  helper_method :voting_complete?
 end
