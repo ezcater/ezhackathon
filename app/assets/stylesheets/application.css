@@ -130,3 +130,7 @@ body {
     width: auto;
     margin-right: 10px;
  }
+
+.project-artifact {
+  margin: 1em 0;
+}

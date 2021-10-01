@@ -16,7 +16,7 @@
 
   <% @projects.each do |project|%>
     <div class="project">
-      <h4><%="#{project.idea.name}: #{project.idea.tagline}"%></h4>
+      <h4><%= link_to "#{project.idea.name}: #{project.idea.tagline}", event_project_path(@event, project), :method => "get" %></h4>
       <div class="tagline">
         <%=project.idea.description%>
       </div>
