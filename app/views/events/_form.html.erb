@@ -25,16 +25,6 @@
   </div>
 
   <div class="mt-6">
-    <%= f.label :participants, class: "block font-bold" %>
-    <%= f.text_area :participants %>
-  </div>
-
-  <div class="mt-6">
-    <%= f.label :demo_links, class: "block font-bold" %>
-    <%= f.text_area :demo_links %>
-  </div>
-
-  <div class="mt-6">
     <%= f.label :voting_status, class: "block font-bold" %><br />
     <%= f.select :voting_status, voting_status_options(@event), {}, class: "full-width" %>
   </div>
