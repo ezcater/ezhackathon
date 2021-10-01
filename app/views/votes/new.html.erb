@@ -1,7 +1,12 @@
 <% content_for(:title) { "#{format_month(@event.time)} Voting" } %>
 
 <% if @state.user_finished_voting? %>
-  <p class="text-center">Thank you for voting!</p>
+  <p class="text-center">
+  Thank you for voting! Check out the
+    <a href="<%= event_awards_path(@event)%>" class="text-ezgreen hover:underline">
+      results so far.
+    </a>
+  </p>
 
 <% elsif @state.user_started_voting? %>
   <%= render partial: "voting", locals: { state: @state } %>

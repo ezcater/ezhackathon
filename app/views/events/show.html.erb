@@ -38,7 +38,11 @@
     Voting has now finished for this event. You can still have a look at the
     awards and projects
     <a href="<%= new_event_vote_path(@event)%>" class="text-ezgreen hover:underline">
-      here.
+      here
+    </a>
+    and find out the
+    <a href="<%= event_awards_path(@event)%>" class="text-ezgreen hover:underline">
+      final results here!
     </a>
   </p>
 <% end %>

@@ -69,7 +69,7 @@ feature "when user votes on awards for an event" do
     choose "An idea that just might work"
     click_button "vote"
 
-    expect(page).to have_content "Thank you for voting!"
+    expect(page).to have_content "Thank you for voting! Check out the results so far."
     expect(Vote.count).to eq original_vote_count + 2
   end
 
