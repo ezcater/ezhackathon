@@ -57,6 +57,12 @@ module Voting
       next_award.present? ? "Vote and move to next award" : "Vote"
     end
 
+    def existing_vote
+      return @_existing_vote if defined? @_existing_vote
+
+      @_existing_vote = Vote.find_by(name: username, event: event, award: current_award)
+    end
+
     private
 
     def projects
