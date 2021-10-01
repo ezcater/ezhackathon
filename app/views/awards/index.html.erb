@@ -13,7 +13,7 @@
                 <%= award_place(index) %>:
               <% end %>
 
-              <%= link_to project.idea.name, "#", class: "text-ezgreen hover:underline" %>
+              <%= link_to project.idea.name, event_project_path(project.event, project), class: "text-ezgreen hover:underline" %>
             </span>
 
             <% unless voting_complete? %>
