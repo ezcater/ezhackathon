@@ -14,7 +14,9 @@
       <%= project.idea.name %>
 
       <% if project.links.present? %>
-        (<a href="<%= project.links %>" target="_blank">project artifact</a>)
+        <a href="<%= project.links %>" target="_blank" class="text-ezgreen hover:underline">
+          (project artifact)
+        </a>
       <% end %>
     </li>
   <% end %>
