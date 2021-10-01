@@ -9,14 +9,14 @@
         <% projects.each.with_index do |project, index| %>
           <li>
             <span class="font-semibold">
-              <% if voting_complete? %>
+              <% if project.event.voting_finished? %>
                 <%= award_place(index) %>:
               <% end %>
 
               <%= link_to project.idea.name, event_project_path(project.event, project), class: "text-ezgreen hover:underline" %>
             </span>
 
-            <% unless voting_complete? %>
+            <% if project.event.voting_started? %>
               (<%= pluralize project.vote_count, "vote" %>)
             <% end %>
           </li>

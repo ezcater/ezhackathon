@@ -15,7 +15,8 @@ feature "when visiting the event awards index page" do
     end
   end
 
-  scenario "user sees each project with votes" do
+  scenario "when voting is started user sees each project with votes" do
+    event.voting_started!
     award = create(:award)
     project_1, project_2 = create_list(:project, 2, event: event)
     create(:vote, award: award, event: event, project: project_1)
@@ -27,7 +28,8 @@ feature "when visiting the event awards index page" do
     expect(page).to have_content("#{project_1.idea.name} (1 vote)")
   end
 
-  scenario "user sees each projects ordered by votes" do
+  scenario "when votiing i started user sees each projects ordered by votes" do
+    event.voting_started!
     award = create(:award)
     project_1, project_2 = create_list(:project, 2, event: event)
     create(:vote, award: award, event: event, project: project_1)
@@ -38,7 +40,8 @@ feature "when visiting the event awards index page" do
     expect(page).to have_content(/#{project_2.idea.name}.*#{project_1.idea.name}/)
   end
 
-  scenario "user sees winner and runner up when voting is complete" do
+  scenario "user sees winner and runner up when voting is finished" do
+    event.voting_finished!
     award = create(:award)
     project_1, project_2 = create_list(:project, 3, event: event)
     create(:vote, award: award, event: event, project: project_1)
