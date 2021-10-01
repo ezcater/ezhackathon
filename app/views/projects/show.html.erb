@@ -9,7 +9,7 @@
 
 <% if @project.links.present? %>
   <p class="mt-4">
-    <%= link_to "Project Artifact", @project.links, class: "text-ezgreen hover:underline" %>
+    <%= link_to "Project Artifact", @project.links, target: :_blank, class: "text-ezgreen hover:underline" %>
   </p>
 <% end %>
 
