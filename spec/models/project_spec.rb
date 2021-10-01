@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Project do
-  require 'validate_url/rspec_matcher'
+  require "validate_url/rspec_matcher"
 
   it { is_expected.to belong_to(:event) }
   it { is_expected.to belong_to(:idea) }
