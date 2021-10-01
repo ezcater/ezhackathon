@@ -2,8 +2,10 @@
 
 class EventsController < ApplicationController
   def index
-    if request.path == "/"
-      @event = Event.order(time: :desc).first
+    event = Event.recent_or_future.first
+
+    if event && root_path?
+      @event = event
 
       render :show
     else
@@ -51,5 +53,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:time, :place, :agenda, :participants, :demo_links, :voting_status)
+  end
+
+  def root_path?
+    request.path == "/"
   end
 end
