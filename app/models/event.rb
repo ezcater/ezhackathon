@@ -11,4 +11,8 @@ class Event < ApplicationRecord
     voting_started: "voting_started",
     voting_finished: "voting_finished",
   }
+
+  def self.recent_or_future
+    where("time >= ?", 7.days.ago)
+  end
 end
