@@ -7,10 +7,10 @@
 <% end %>
 
 <h3 class="mt-8 text-3xl font-bold">Agenda</h3>
-<p><%= @event.agenda %></p>
+<p><%= simple_format @event.agenda %></p>
 
 <h3 class="mt-8 text-3xl font-bold">Participants</h3>
-<p><%= @event.participants %></p>
+<p><%= simple_format @event.participants %></p>
 
 <h3 class="mt-8 text-3xl font-bold">Demos</h3>
 <p><%= @event.demo_links %></p>
