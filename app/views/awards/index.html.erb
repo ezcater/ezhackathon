@@ -6,18 +6,20 @@
       <h2 class="text-3xl font-bold"><%= award.title %></h2>
 
       <ol class="mt-2 ml-9 list-decimal leading-loose">
-        <% projects.each.with_index do |project, index| %>
+        <% projects.each.with_index do |(votes, project_group), index| %>
           <li>
             <span class="font-semibold">
-              <% if project.event.voting_finished? %>
+              <% if @event.voting_finished? %>
                 <%= award_place(index) %>:
               <% end %>
 
-              <%= link_to project.idea.name, event_project_path(project.event, project), class: "text-ezgreen hover:underline" %>
+              <%= project_group.map do |project| %>
+                <% link_to project.name, event_project_path(@event, project), class: "text-ezgreen hover:underline" %>
+              <% end.to_sentence.html_safe %>
             </span>
 
-            <% if project.event.voting_started? %>
-              (<%= pluralize project.vote_count, "vote" %>)
+            <% if @event.voting_started? %>
+              (<%= pluralize votes, "vote" %>)
             <% end %>
           </li>
         <% end %>

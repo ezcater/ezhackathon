@@ -16,7 +16,14 @@ class AwardsController < ApplicationController
 
   def awards_with_projects_ordered_by_votes
     Award.order(:title).each_with_object({}) do |award, rankings|
-      rankings[award] = projects_ordered_by_votes_for(award).limit(project_limit)
+      if event.voting_not_started?
+        projects = event.projects.all.group_by(&:id)
+      else
+        projects = projects_ordered_by_votes_for(award).group_by(&:vote_count)
+        projects = projects.first(project_limit) if project_limit
+      end
+
+      rankings[award] = projects
     end
   end
 
