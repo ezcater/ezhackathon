@@ -1,2 +1,3 @@
-<h2>Submit a New Project for the <%= @event.time.strftime("%B %d, %Y")%> ezHackathon</h2>
-<%= render :partial => '/projects/form' %>
+<% content_for(:title) { "Submit a New Project for the #{@event.time.strftime("%B %d, %Y")} ezHackathon" } %>
+
+<%= render partial: "/projects/form" %>
