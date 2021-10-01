@@ -15,6 +15,34 @@
 <h3 class="mt-8 text-3xl font-bold">Demos</h3>
 <p><%= @event.demo_links %></p>
 
+<h3 class="mt-8 text-3xl font-bold">Voting</h3>
+<% if @event.voting_not_started? %>
+  <p class="mt-4">
+    Voting has not yet started. However, you can get a sneaky preview of the
+    awards you'll be voting on
+    <a href="<%= new_event_vote_path(@event)%>" class="text-ezgreen hover:underline">
+      here.
+    </a>
+  </p>
+
+<% elsif @event.voting_started? %>
+  <p class="mt-4 mb-4">
+    Voting is open!
+  </p>
+  <a href="<%= new_event_vote_path(@event)%>" class="inline-block px-5 py-3 font-medium rounded-md text-white bg-ezgreen hover:bg-ezgreen-dark">
+    Cast your vote
+  </a>
+
+<% else @event.voting_started? %>
+  <p class="mt-4">
+    Voting has now finished for this event. You can still have a look at the
+    awards and projects
+    <a href="<%= new_event_vote_path(@event)%>" class="text-ezgreen hover:underline">
+      here.
+    </a>
+  </p>
+<% end %>
+
 <div>
   <h3 class="mt-8 text-3xl font-bold">Projects</h3>
 

@@ -4,6 +4,7 @@ class VotesController < ApplicationController
   before_action :load_event
   before_action :load_control_strategy
   before_action :load_state
+  before_action :ensure_can_vote
 
   def new; end
 
@@ -31,5 +32,12 @@ class VotesController < ApplicationController
 
   def load_state
     @state = ::Voting::State.new(control_strategy: @control_strategy, event: @event)
+  end
+
+  def ensure_can_vote
+    unless @event.voting_started? || !@state.user_started_voting?
+      flash[:notice] = "Voting is not currently enabled"
+      redirect_to new_event_vote_path(@event)
+    end
   end
 end
