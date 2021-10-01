@@ -4,19 +4,23 @@ class VotesController < ApplicationController
   before_action :load_event
   before_action :load_control_strategy
   before_action :load_state
-  before_action :ensure_can_vote
 
   def new; end
 
   def create
     project = Project.find(params[:project_id])
-    @vote = Vote.create!(
-      award: @state.current_award,
-      project: project,
-      name: @state.username,
-      event: @event
-    )
-    flash[:success] = "Vote successfully recorded"
+    if @state.existing_vote.present?
+      @state.existing_vote.update!(project: project)
+      flash[:success] = "Vote successfully updated"
+    else
+      @vote = Vote.create!(
+        award: @state.current_award,
+        project: project,
+        name: @state.username,
+        event: @event
+      )
+      flash[:success] = "Vote successfully recorded"
+    end
     redirect_to @control_strategy.build_next_path(@state)
   end
 
@@ -32,12 +36,5 @@ class VotesController < ApplicationController
 
   def load_state
     @state = ::Voting::State.new(control_strategy: @control_strategy, event: @event)
-  end
-
-  def ensure_can_vote
-    unless @event.voting_started? || !@state.user_started_voting?
-      flash[:notice] = "Voting is not currently enabled"
-      redirect_to new_event_vote_path(@event)
-    end
   end
 end

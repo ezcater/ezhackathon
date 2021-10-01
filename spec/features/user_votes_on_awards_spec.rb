@@ -92,4 +92,28 @@ feature "when user votes on awards for an event" do
     visit new_event_vote_path(event, award_id: awards.first.id, username: "cheater")
     expect(page).not_to have_selector("vote")
   end
+
+  scenario "user votes for same award twise" do
+    event.update!(voting_status: :voting_started)
+
+    original_vote_count = Vote.count
+
+    visit new_event_vote_path(event)
+    fill_in :username, with: "Test User"
+    click_button "start_voting"
+
+    expect(page).to have_content "Most likely to break production"
+    expect(page).to have_content "Award 1 of 2"
+    choose "Hey, how about we convert the entire codebase to COBOL?"
+    click_button "vote"
+
+    visit new_event_vote_path(event, username: "Test User", award_id: awards.first.id)
+
+    expect(page).to have_content "Most likely to break production"
+    choose "An idea that just might work"
+    click_button "vote"
+
+    expect(page).to have_content "Vote successfully updated"
+    expect(Vote.count).to eq original_vote_count + 1
+  end
 end
