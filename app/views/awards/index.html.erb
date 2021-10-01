@@ -25,3 +25,17 @@
     </li>
   <% end %>
 </ul>
+
+<% if @refresh_interval %>
+  <script>
+    const originalPage = location.href
+
+    document.addEventListener('turbolinks:load', function() {
+      timeoutId = setTimeout(function() {
+        if (location.href === originalPage) {
+          location.reload();
+        }
+      }, <%= @refresh_interval * 1000 %>);
+    });
+  </script>
+<% end %>
