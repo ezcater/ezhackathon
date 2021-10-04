@@ -6,14 +6,14 @@
       <h2 class="text-3xl font-bold"><%= award.title %></h2>
 
       <ol class="mt-2 ml-9 list-decimal leading-loose">
-        <% projects.each.with_index do |(votes, project_group), index| %>
+        <% projects.each.with_index do |(votes, rank_group), index| %>
           <li>
             <span class="font-semibold">
               <% if @event.voting_finished? %>
                 <%= award_place(index) %>:
               <% end %>
 
-              <%= project_group.map do |project| %>
+              <%= rank_group.map do |project| %>
                 <% link_to project.name, event_project_path(@event, project), class: "text-ezgreen hover:underline" %>
               <% end.to_sentence.html_safe %>
             </span>
