@@ -50,7 +50,6 @@ end
 group :development do
   gem "aws-sdk-s3", require: false
   gem "ezcater_docker_shared"
-  gem "ezk", require: false
   gem "foreman", require: false
   gem "overcommit", require: false
   gem "spring-commands-rspec"
