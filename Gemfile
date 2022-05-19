@@ -14,7 +14,7 @@ gem "ezcater_trusted_proxies-rails"
 gem "ice_nine", require: ["ice_nine", "ice_nine/core_ext/object"]
 gem "lograge"
 gem "private_attr", require: "private_attr/everywhere"
-gem "rails", "~> 6.0.3", ">= 6.0.3.7"
+gem "rails", "~> 6.0.3"
 gem "required_env_fetcher"
 gem "sprockets"
 gem "sprockets-rails", require: "sprockets/railtie"
