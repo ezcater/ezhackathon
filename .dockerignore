@@ -6,7 +6,7 @@ Jenkinsfile
 README.md
 coverage
 docker-compose.yml
-log
+log/*
 production-readiness.md
 service.yml
 tmp
