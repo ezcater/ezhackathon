@@ -1,8 +1,9 @@
-FROM ezcater-production.jfrog.io/ruby:2.7-pg13
+FROM ezcater-production.jfrog.io/ruby:2.7-d11s-pg13
 
 ARG SKIP_REQUIRED_ENV_VAR_ENFORCEMENT=true
 COPY Gemfile Gemfile.lock /usr/src/app/
 ARG BUNDLE_EZCATER__JFROG__IO
+RUN apt-get update && apt-get upgrade -y
 RUN bundle install --without test development staging
 ADD . /usr/src/app
 RUN RAILS_ENV=production SECRET_KEY_BASE=fakekeybase bundle exec rails assets:precompile

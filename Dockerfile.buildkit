@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:experimental
-FROM ezcater-production.jfrog.io/ruby:2.7-pg13
+FROM ezcater-production.jfrog.io/ruby:2.7-d11s-pg13
 
 ARG SKIP_REQUIRED_ENV_VAR_ENFORCEMENT=true
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   rsync \
   && rm -rf /var/lib/apt/lists/*
 
